@@ -109,7 +109,9 @@ Let's look at the file structure. Looks quite standard to `Nextjs`, but some cha
 
 [Installing Tailwind CSS with Next.js](https://tailwindcss.com/docs/guides/nextjs).
 
-We already did the first step, so go to step 2 and paste over the commands:
+1. We already did the first step
+
+2. Step 2 and paste over the commands:
 
 ```sh
 npm install -D tailwindcss postcss autoprefixer
@@ -118,3 +120,47 @@ npm install -D tailwindcss postcss autoprefixer
 ```sh
 npx tailwindcss init -p
 ```
+
+3. In `tailwind.config.js`, populate the `content` array
+
+```json
+module.exports = {
+  content: [
+    "./app/**/*.{js,ts,jsx,tsx,mdx}",
+    "./pages/**/*.{js,ts,jsx,tsx,mdx}",
+    "./components/**/*.{js,ts,jsx,tsx,mdx}",
+```
+
+4. Add Tailwind directives
+
+
+Go to `app/globals.css` and place at the top:
+
+```css
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+```
+
+## Start the Build Process
+
+```sh
+npm run dev
+```
+
+Which will start up in `http://localhost:3000`, so open that link up in a browser.
+
+We will see some boiler-plate code inside `page.js`.
+
+We can delete the JSX element that's being returned by `Home()`:
+
+```js
+export default function Home() {
+  return (
+    // Delete everything in here
+  );
+}
+```
+
+We can add a `<main>` tag to return with a `className='bg-green-200 min-h-screen'` to see if TailwindCSS is working.
+
