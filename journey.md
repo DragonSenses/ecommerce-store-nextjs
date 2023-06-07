@@ -104,3 +104,17 @@ Let's look at the file structure. Looks quite standard to `Nextjs`, but some cha
 
 - In root level directory, within `/app` the file that gets rendered is `/app/page.js`
 - The `/app/layout.js` wraps our app, `page.js` and any sub-pages that we define. This will contain our `header`, `footer` and more.
+
+## Using Tailwind CSS with Next.js
+
+[Installing Tailwind CSS with Next.js](https://tailwindcss.com/docs/guides/nextjs).
+
+We already did the first step, so go to step 2 and paste over the commands:
+
+```sh
+npm install -D tailwindcss postcss autoprefixer
+```
+
+```sh
+npx tailwindcss init -p
+```
