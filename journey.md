@@ -30,6 +30,12 @@ CRA had a lack of features (such as native support for TypeScript or CSS library
 
 [Next.js](https://nextjs.org/) is a full-stack React framework. It's versatile and lets you create React apps of any size - from a mostly static blog to a complex dynamic application.
 
+To create a new `Next.js` project, run in the terminal:
+
+```sh
+npx create-next-app
+```
+
 # Project Introduction
 
 A full-stack e-commerce application using:
@@ -40,3 +46,61 @@ A full-stack e-commerce application using:
 - **Stripe** API for product and transaction handling
 - **TailwindCSS** to design and stylize our app
 - **Zustand** for global state management
+
+# Project Instructions
+
+Let's start by creating the folder you want to store the project in, in my case I called it `ecommerce-store-nextjs`.
+
+In the terminal (powershell, etc.):
+
+```powershell
+mkdir ecommerce-store-nextjs
+cd ecommerce-store-nextjs
+```
+
+Then create a new Next.js project:
+
+```sh
+npx create-next-app@latest ecommerce-store-nextjs
+```
+
+- Created a Next.js app with `@latest`
+- Give a name for the project : `ecommerce-store-nextjs`
+
+Hitting `[Enter]` will give us configurations to do for our terminal.
+
+Here is the prompt:
+
+```sh
+Need to install the following packages:
+  create-next-app@13.4.4
+Ok to proceed? (y) y
+√ What is your project named? ... ecommerce-store-nextjs
+√ Would you like to use TypeScript with this project? ... No / Yes
+√ Would you like to use ESLint with this project? ... No / Yes
+√ Would you like to use Tailwind CSS with this project? ... No / Yes
+√ Would you like to use `src/` directory with this project? ... No / Yes
+√ Use App Router (recommended)? ... No / Yes
+√ Would you like to customize the default import alias? ... No / Yes
+```
+
+- Yes to proceed, named the project
+- No to using TypeScript for now
+- Yes to ESLint
+- Yes to Tailwind CSS
+- No for `src/` directory
+- Yes for App Router
+- No to `import alias` as in we will keep the alias the same
+
+## File Structure
+
+Let's look at the file structure. Looks quite standard to `Nextjs`, but some changes in NextJS_13 is the `app` directory we selected to use:
+
+- Instead of having `/pages`, `/components`, and `/src` directories everything is now done in the `/app` directory.
+
+- `globals`, `layout`, and `page`
+
+-`layout` and `page` are reserved keywords that do specific things within `/app`
+
+- In root level directory, within `/app` the file that gets rendered is `/app/page.js`
+- The `/app/layout.js` wraps our app, `page.js` and any sub-pages that we define. This will contain our `header`, `footer` and more.
