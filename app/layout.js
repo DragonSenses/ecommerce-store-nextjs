@@ -14,7 +14,11 @@ export default function RootLayout({ children }) {
       <body className={
         'min-h-screen flex flex-col relative ' + inter.className
       }>
-        <header className=''>HEADER</header>
+        <header className='sticky top-0 p-6 bg-white border-b border-solid border-blue-900
+        shadow-md z-50 text-2xl sm:text-3xl md:text-4xl sm:p-8'
+        >
+          HEADER
+        </header>
         <div className="flex-1">
           {children}
         </div>
