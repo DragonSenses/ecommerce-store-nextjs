@@ -254,3 +254,24 @@ Going to use `<head>` tag to import [Font Awesome CDN](https://cdnjs.com/librari
 ```
 
 Now go to the [Font Awesome Icons (free)](https://fontawesome.com/search?m=free&o=r) and search for "cart" so we can use the cart icon. 
+
+Now add these things in the `<header>`,
+
+```js
+<h1>Shop</h1>
+<i className="fa-solid fa-cart-shopping"></i>
+```
+
+Let's further add these classes to the header:
+
+```js
+'flex item-center justify-between'
+```
+
+Then style the `<h1>`
+
+```js
+<h1 className='uppercase cursor-pointer hover:scale-110'>Shop</h1>
+```
+
+Giving it a hover
