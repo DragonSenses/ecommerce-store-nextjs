@@ -240,3 +240,17 @@ export default function RootLayout({ children }) {
   )
 }
 ```
+
+## Using `<head>` tag
+
+To use the icons at [Font Awesome Icons (free)](https://fontawesome.com/search?m=free&o=r), we need to do some set-up.
+
+Going to use `<head>` tag to import [Font Awesome CDN](https://cdnjs.com/libraries/font-awesome) package, click the `</>` icon to copy the `<link>` tag. Paste it inside the `<head>`.
+
+- One change: have to capitalize the O in Origin and P in Policy
+
+```js
+<link rel="stylesheet" href="..." crossOrigin="anonymous" referrerPolicy="no-referrer" />
+```
+
+Now go to the [Font Awesome Icons (free)](https://fontawesome.com/search?m=free&o=r) and search for "cart" so we can use the cart icon. 
