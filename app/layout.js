@@ -1,3 +1,4 @@
+import Link from 'next/link'
 import './globals.css'
 import { Inter } from 'next/font/google'
 
@@ -17,12 +18,15 @@ export default function RootLayout({ children }) {
       <body className={
         'min-h-screen flex flex-col relative ' + inter.className
       }>
-        <header className='sticky top-0 p-6 bg-white border-b border-solid border-blue-900
+        <header id='header'
+          className='sticky top-0 p-6 bg-white border-b border-solid border-blue-900
         shadow-md z-50 text-2xl sm:text-3xl md:text-4xl sm:p-8
         flex item-center justify-between'
         >
-          <h1 className='uppercase cursor-pointer hover:scale-110'>Shop</h1>
-          <i className="fa-solid fa-cart-shopping"></i>
+          <Link href={'/'}>
+            <h1 className='uppercase cursor-pointer hover:scale-110'>Shop</h1>
+            <i className="fa-solid fa-cart-shopping"></i>
+          </Link>
         </header>
         <div className="flex-1">
           {children}
