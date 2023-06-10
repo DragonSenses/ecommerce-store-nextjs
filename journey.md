@@ -397,3 +397,14 @@ Find that your secret stripe key, in the Dashboard > Developers > API Keys.
 Click > `[Reveal test key]` next to `Secret key` > Copy the entire key > post it inside as the value to `STRIPE_SECRET` and save `.env` file.
 
 With this in place we can now install `stripe`.
+
+## Install Stripe
+
+In the terminal, we are probably still running our `npm run dev`. Type `[CTRL] + [C]` on the keyboard to terminate the run operation in the Terminal. Press `Y` to confirm in the terminal to **terminate batch job**.
+
+Then let's install Stripe:
+
+```sh
+npm i stripe
+```
+
