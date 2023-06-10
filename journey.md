@@ -356,3 +356,44 @@ What's the issue above? Well the `flex items-center justify-between` should be p
 </header>
 ```
 
+# Stripe
+
+Head on over to [Stripe](https://stripe.com/), create an account. Go to the Dashboard, in the top left where it says `(New Business)` click that and create a New Account.
+
+Going to call it e-commerce store, click Create Account.
+
+It will offer you `use case or product` go with `Try Connect` thats about "Run a platform or marketplace".
+
+At this point just exit, and go to the dash board. Click `Developers` in the top right. Enable `Test Mode`. Enabling `Live Mode` will start billing and processing transactions.
+
+## Create `.env` file
+
+Go to project directory and create `.env` file.
+
+In `.gitignore`, confirm that this is within it:
+
+```t
+# local env files
+.env*.local
+```
+
+For safe measure add `.env` inside `.gitignore`:
+```t
+# local env files
+.env*.local
+.env
+```
+
+This will ensure that `.env` file will not be pushed to any public repositories as this will store **sensitive data, including API keys, passwords, etc.**
+
+Inside `.env`, create the Stripe key:
+
+```t
+STRIPE_SECRET="YOUR_SECRET_STRIPE_KEY";
+```
+
+Find that your secret stripe key, in the Dashboard > Developers > API Keys.
+
+Click > `[Reveal test key]` next to `Secret key` > Copy the entire key > post it inside as the value to `STRIPE_SECRET` and save `.env` file.
+
+With this in place we can now install `stripe`.
