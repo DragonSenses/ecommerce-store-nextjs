@@ -445,3 +445,22 @@ async function getStripeProducts(){
 - The next parameter is setting the Stripe API version, which is '2020-08-27', by doing so allows us **to avoid any surprises in your production code when you decide to upgrade your account’s default API version later on.**
 
 [Set a Stripe API version](https://stripe.com/docs/libraries/set-version).
+
+- After initializing, get a response that contains our data to access all of our products.
+
+[Stripe API: List all Prices in Node.js](https://stripe.com/docs/api/prices/list?lang=node). As you can see we `await stripe.prices.list({});` to `GET` our data.
+- Inside of the `list()` method, we pass in an object that has 1 key `expand` with the value as an `array` that contains the string `'data.product'`.
+
+```js
+async function getStripeProducts(){
+  // Initialize Stripe
+  const stripe = new Stripe(process.env.STRIPE_SECRET ?? '', {
+    apiVersion: '2020-08-27'
+  });
+
+  // Access our product data
+  const res = await stripe.prices.list({
+    expand: ['data.product']
+  });
+```
+
