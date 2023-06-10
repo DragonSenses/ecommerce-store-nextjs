@@ -142,6 +142,14 @@ Go to `app/globals.css` and place at the top:
 @tailwind utilities;
 ```
 
+### Fix TailwindCSS Lint warnings
+
+`globals.css` will throw out some warnings where "Unknown rule @tailwind". So here's the fix.
+
+Use official [Tailwind CSS IntelliSenses extension](https://marketplace.visualstudio.com/items?itemName=bradlc.vscode-tailwindcss) to extend built-in CSS language mode to fix lint warnings, without losing any of VS Code's default IntelliSense features. A StackOverflow [response](https://stackoverflow.com/questions/47607602/how-to-add-a-tailwind-css-rule-to-css-checker) if you would want to use an alternative to an extension.
+
+[Add TailwindCSS to VS Code Settings under `files.associations](https://marketplace.visualstudio.com/items?itemName=bradlc.vscode-tailwindcss#recommended-vs-code-settings).
+
 ## Start the Build Process
 
 ```sh
@@ -275,3 +283,76 @@ Then style the `<h1>`
 ```
 
 Giving it a hover
+
+### Adding css transition duration
+
+Going to add a css class using the `*` to target every element of the page.
+
+In `globals.css`:
+
+```css
+* {
+  transition-duration: 200ms;
+}
+```
+
+So now our hover is a bit slower.
+
+This could be improved by targeting the header specifically.
+
+Gave `header` an `id='header'` then gave it the specific style. Colored it purple for demonstration purposes so the changes would be seen immediately.
+
+```css
+#header > h1 {
+  transition-duration: 200ms;
+  color: purple;
+}
+```
+
+## Using `Link`
+
+In Next.js:
+
+```js
+import Link from 'next/link'
+
+<Link href={'...'}></Link>
+```
+
+Wrap the contents of the `header` in a Link tag, with an `href={'/'}`.
+
+```js
+<header>
+  <Link href={'/'}>
+    <h1 className='uppercase cursor-pointer hover:scale-110'>Shop</h1>
+    <i className="fa-solid fa-cart-shopping"></i>
+  </Link>
+</header>
+```
+
+So when user clicks the `h1` at the top it will `Link` them back to the home page.
+
+#### Learning point: flex does not apply to descendants but immediate children
+
+```js
+<header className='flex items-center justify-between sticky'
+  <Link href={'/'}>
+    <h1 className='uppercase cursor-pointer hover:scale-110'>Shop</h1>
+    <i className="fa-solid fa-cart-shopping"></i>
+  </Link>
+</header>
+```
+
+What's the issue above? Well the `flex items-center justify-between` should be putting the `h1` and `i` elements apart. But it does not. Why? They are both wrapped in `Link` and `flex` only applies to the immediate children of `header` which is just `Link` in this case.
+
+**The fix**: bring out `<i>` so now it would be a sibling element to `Link` and `flex` will apply.
+
+```js
+<header className='flex items-center justify-between sticky'
+  <Link href={'/'}>
+    <h1 className='uppercase cursor-pointer hover:scale-110'>Shop</h1>
+  </Link>
+  <i className="fa-solid fa-cart-shopping"></i>
+</header>
+```
+
