@@ -408,3 +408,40 @@ Then let's install Stripe:
 npm i stripe
 ```
 
+## **Next13's new feature:** Getting Static information
+
+Historically, we would've used [`getStaticProps()`](https://nextjs.org/docs/pages/building-your-application/data-fetching/get-static-props) which we no longer have to do that.
+
+We don't have to use any user fix or `useState` to handle loading data in server side.
+
+**We can just define an asynchronous function** and we can turn our **Home page into an asynchronous function as well**.
+
+This means the Home page will be pulled in asynchronously server-side before the page actually gets rendered. 
+
+- **By default all pages are server-side rendered in Next13**, it means its extremely quick and data is loaded instantaneously and avoiding any client-side rendering.
+
+Let's try it out: in the `page.js`
+
+- Add `async` to the Home page component
+
+```js
+export default async function Home() {
+```
+
+Create `async` function:
+
+```js
+import Stripe from 'stripe'
+
+async function getStripeProducts(){
+  const stripe = new Stripe(process.env.STRIPE_SECRET ?? '', {
+    apiVersion: '2020-08-27'
+  });
+}
+```
+
+- In that function we initialize `Stripe` inside of the function server-side by passing in our API key as the first argument. We will provide a back-up of an empty string through the use of [nullish coalescing operator](https://javascript.info/nullish-coalescing-operator). If our `key` is defined then `key`, otherwise if it is not defined then `''` or an empty string.
+
+- The next parameter is setting the Stripe API version, which is '2020-08-27', by doing so allows us **to avoid any surprises in your production code when you decide to upgrade your account’s default API version later on.**
+
+[Set a Stripe API version](https://stripe.com/docs/libraries/set-version).
