@@ -485,3 +485,15 @@ async function getStripeProducts(){
 }
 ```
 
+- Now this will be accessible as `products` after invoking the `async function` in our actual component:
+
+```js
+export default async function Home() {
+  
+  const products = getStripeProducts();
+  
+  return (
+    // ...
+  )
+}
+```
