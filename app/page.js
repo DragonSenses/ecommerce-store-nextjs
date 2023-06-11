@@ -19,9 +19,9 @@ async function getStripeProducts(){
 }
 
 export default async function Home() {
-  const products = getStripeProducts();
+  const products = await getStripeProducts();
   console.log(products);
-  
+
   return (
     <main className="p-4">
       Main Text
