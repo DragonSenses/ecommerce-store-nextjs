@@ -527,3 +527,38 @@ export default async function Home() {
 ```
 
 Lets boot up our app with `npm run dev`.
+
+This is what was recorded in the terminal:
+
+```sh
+Promise {
+  <pending>,
+  [Symbol(async_id_symbol)]: 907,
+  [Symbol(trigger_async_id_symbol)]: 904,
+  [Symbol(kResourceStore)]: {
+    headers: [Getter],
+  ...
+```
+
+So it returns a Promise, which means we are missing something in our code. We need to add `await`.
+
+```js
+export default async function Home() {
+  const products = await getStripeProducts();
+  console.log(products);
+  // ...
+```
+
+Now refresh the page @ `http://localhost:3000/`
+
+Now we get the actual products in the terminal:
+
+```sh
+[
+  {
+    id: 'price_1NHdRIJ4MEfvtz7t6WZZCDKS',
+    object: 'price',
+    active: true,
+    billing_scheme: 'per_unit',
+    // ...
+```
