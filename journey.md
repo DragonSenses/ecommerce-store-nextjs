@@ -562,3 +562,57 @@ Now we get the actual products in the terminal:
     billing_scheme: 'per_unit',
     // ...
 ```
+
+# Creating Components
+
+You cannot randomly name components because they have **reserved** names.
+
+We will create two components:
+
+1. `loading.js`
+
+Inside `/app/loading.js` :
+
+```js
+export default function loading() {
+  return (
+    <div>Loading...</div>
+  )
+}
+```
+
+This will be a special component that wraps our app (similar to layout). It acts in the same way that the new [React <Suspense> tags](https://react.dev/reference/react/Suspense) work (`<Suspense>` lets you display a fallback until its children have finished loading).
+
+They check for any promises in the children content, and if they do then `loading` page gets displayed.
+
+We can see that when we refresh our page. While we are loading data, the page is automatically rendered by default. The loading behavior is all handled, without needing to have a loading state inside of our app. It is seamless, a great feature from NextJS 13.
+
+2. `error.js`
+
+When we fetch data we typically handle an error state. This is also a reserved component name, so in `/app/error.js`
+
+```js
+export default function Error() {
+  return (
+    <div>Error...</div>
+  );
+}
+```
+
+Because this component is in the state of being rendered server-side like our loading component, and layout, pages. We need to make this component server-side as well.
+
+## To make Error component server-side
+
+We have to add the statement: `"use client"` at the top.
+
+```js
+"use client"
+
+export default function Error() {
+  return (
+    <div>Error...</div>
+  );
+}
+```
+
+If we have any errors pulling our data, we will just display this Error component. Another Next.js 13 feature!
