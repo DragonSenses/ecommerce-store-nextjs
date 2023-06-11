@@ -616,3 +616,60 @@ export default function Error() {
 ```
 
 If we have any errors pulling our data, we will just display this Error component. Another Next.js 13 feature!
+
+## Styling the Home Page
+
+```js
+export default async function Home() {
+  const products = await getStripeProducts();
+  console.log(products);
+
+  return (
+    <main className="p-4 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3">
+      Main Text
+    </main>
+  )
+}
+```
+
+Decided to go with a grid layout to display our products, applying responsive design on certain break points.
+
+## First actual component (not reserved name)
+
+Let's create our first component called `ProductCard.js`. Let's use the "rfc" trick to create our React Functional Component using Visual Studio Code Extension for React: [ES7+ React/Redux/React-Native snippets
+].
+
+`/app/ProductCard.js`
+
+```js
+import React from 'react';
+
+export default function ProductCard(props) {
+  return (
+    <div>ProductCard</div>
+  )
+}
+```
+
+This component will receive some props.
+
+We should import this in `page.js` and place it inside the `main` tag thats being returned by the `Home` component.
+
+```js
+import ProductCard from './ProductCard';
+
+export default async function Home() {
+  const products = await getStripeProducts();
+  console.log(products);
+
+  return (
+    <main className="p-4 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3">
+      {}
+      <ProductCard />
+
+    </main>
+  )
+}
+```
+
+#### Map out products here
