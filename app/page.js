@@ -23,7 +23,7 @@ export default async function Home() {
   console.log(products);
 
   return (
-    <main className="p-4">
+    <main className="p-4 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3">
       Main Text
     </main>
   )
