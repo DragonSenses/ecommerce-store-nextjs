@@ -497,3 +497,33 @@ export default async function Home() {
   )
 }
 ```
+
+## Creating Products
+
+Go to Stripe Dashboard and click Products.
+
+Click Add a Product, fill out the information regarding the product. Make sure to click `One time` as the payment.
+
+Now click "Save product" in the top right.
+
+Create our 3 products, upload images, etc.
+
+Now we can access our product data through this:
+
+```js
+  // Access our product data, by returning a list of prices
+  const res = await stripe.prices.list({
+    expand: ['data.product']
+  });
+```
+
+Let's go ahead and log our products to see them:
+
+```js
+export default async function Home() {
+  const products = getStripeProducts();
+  console.log(products);
+  // ...
+```
+
+Lets boot up our app with `npm run dev`.
