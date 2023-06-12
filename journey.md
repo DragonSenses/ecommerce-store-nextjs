@@ -672,4 +672,67 @@ export default async function Home() {
 }
 ```
 
-#### Map out products here
+- Now inside the `main`, we want to `map` out the products into a `ProductCard`.
+- Make sure to give it an index to use as a key within the mapping
+
+```js
+export default async function Home() {
+  const products = await getStripeProducts();
+
+  return (
+    <main className="p-4 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3">
+
+      {products.map((product, productIndex) => {
+
+        return (
+          <ProductCard key={productIndex} product={product}/>
+        )
+
+      })}
+
+    </main>
+  )
+}
+```
+
+Now reload the page and we will see our `ProductCard` text rendered out in the home page.
+
+## Refactoring the Layout
+
+Going to move the responsive `grid` utility classes into a `div` under `main`. Then give `main` a `flex flex-col` class.
+
+Like so:
+
+```js
+export default async function Home() {
+  const products = await getStripeProducts();
+
+  return (
+
+    <main className="p-4 flex flex-col">
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3">
+
+        {products.map((product, productIndex) => {
+          // ..
+        })}
+      </div>
+    </main>
+  )
+}
+```
+
+The reason is so that I can define a max-width of `1000px` on the `div` element.
+
+```js
+<main className="p-4 flex flex-col">
+  <div className="max-w-[1000px] w-full mx-auto grid grid-cols-1 
+  sm:grid-cols-2 md:grid-cols-3">
+    {products.map((product, productIndex) => {
+```
+
+This means that on an even larger page, our products will self-center and won't continue to become larger.
+
+```js
+<div className="max-w-[1000px] w-full mx-auto grid grid-cols-1 
+  sm:grid-cols-2 md:grid-cols-3">
+```
