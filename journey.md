@@ -739,6 +739,7 @@ This means that on an even larger page, our products will self-center and won't 
 
 ## Implementing the `ProductCard`
 
+2 Layers of Destructuring:
 - Destructure out the `product` from the `props`
 - Destructure out the variables from the `product`
 
@@ -763,4 +764,44 @@ What are the variables we need? Looking at the terminal where the `products` wer
     unit_amount: cost,
     product: productInfo,
   } = product;
+```
+
+### Styling the `ProductCard`
+
+```js
+    <div className='flex flex-col shadow bg-white hover:shadow-lg
+    cursir-point'>
+      ProductCard
+    </div>
+```
+
+As for the Content on the page, let's use the image from the `images` array. First, we need to use some info from `productInfo` for the `alt` used in the `img` tag.
+
+3rd Layer of Destructuring:
+```js
+  const {
+    name,
+    description
+  } = productInfo;
+```
+
+Then the `img` element:
+
+```js
+  return (
+    <div className='flex flex-col shadow bg-white hover:shadow-lg
+    cursir-point'>
+      <img src={productInfo.images[0]} alt={name} className='w-full h-full object-cover' />
+    </div>
+  )
+```
+
+#### Add a gap between `ProductCard`(s)
+
+In `/app/page.js`, added a `gap-4`
+
+```js
+      <div className="max-w-[1000px] w-full mx-auto grid grid-cols-1
+      sm:grid-cols-2 md:grid-cols-3 gap-4">
+        {products.map((product, productIndex) => {
 ```
