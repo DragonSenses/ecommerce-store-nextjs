@@ -736,3 +736,31 @@ This means that on an even larger page, our products will self-center and won't 
 <div className="max-w-[1000px] w-full mx-auto grid grid-cols-1 
   sm:grid-cols-2 md:grid-cols-3">
 ```
+
+## Implementing the `ProductCard`
+
+- Destructure out the `product` from the `props`
+- Destructure out the variables from the `product`
+
+```js
+export default function ProductCard(props) {
+  const { product } = props;
+  
+  const {
+
+  } = product;
+```
+
+What are the variables we need? Looking at the terminal where the `products` were logged, we can see some information about each `product`.
+
+- The `id` - the identification for the product (let's give it an alias of `price_id`)
+- `unit_amount` - the actual price we specified in Stripe (give it an alias of `cost`)
+-  `product` - an object of the product itself (its alias will be `productInfo`)
+
+```js
+  const {
+    id: price_id,
+    unit_amount: cost,
+    product: productInfo,
+  } = product;
+```
