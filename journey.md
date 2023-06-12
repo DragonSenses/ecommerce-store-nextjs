@@ -770,7 +770,7 @@ What are the variables we need? Looking at the terminal where the `products` wer
 
 ```js
     <div className='flex flex-col shadow bg-white hover:shadow-lg
-    cursir-point'>
+    cursor-pointer'>
       ProductCard
     </div>
 ```
@@ -790,7 +790,7 @@ Then the `img` element:
 ```js
   return (
     <div className='flex flex-col shadow bg-white hover:shadow-lg
-    cursir-point'>
+    cursor-pointer'>
       <img src={productInfo.images[0]} alt={name} className='w-full h-full object-cover' />
     </div>
   )
@@ -804,4 +804,28 @@ In `/app/page.js`, added a `gap-4`
       <div className="max-w-[1000px] w-full mx-auto grid grid-cols-1
       sm:grid-cols-2 md:grid-cols-3 gap-4">
         {products.map((product, productIndex) => {
+```
+
+### Add more info to `ProductCard`
+
+- Create a `div` under `img` then begin adding the rest of the data we destructured: `name`, `cost` (this is in cents so need to divide by 100), and `description`.
+
+```js
+  return (
+    <div className='flex flex-col shadow bg-white hover:shadow-lg
+    cursor-pointer'>
+      <img 
+        src={productInfo.images[0]} alt={name} 
+        className='w-full h-full object-cover' 
+      />
+      <div className="flex flex-col gap-2 p-4">
+        <div className="flex items-center justify-between">
+          <h3>{name}</h3>
+          <p>${cost/100}</p>
+        </div>
+        <p className='text-sm'>{description}</p>
+      </div>
+    </div>
+  )
+}
 ```
