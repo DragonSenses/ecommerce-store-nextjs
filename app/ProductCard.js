@@ -9,7 +9,18 @@ export default function ProductCard(props) {
     product: productInfo,
   } = product;
 
+  const {
+    name,
+    description
+  } = productInfo;
+
   return (
-    <div>ProductCard</div>
+    <div className='flex flex-col shadow bg-white hover:shadow-lg
+    cursir-point'>
+      <img 
+        src={productInfo.images[0]} alt={name} 
+        className='w-full h-full object-cover' 
+      />
+    </div>
   )
 }
