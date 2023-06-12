@@ -1,5 +1,6 @@
-import Image from 'next/image'
-import Stripe from 'stripe'
+import Image from 'next/image';
+import Stripe from 'stripe';
+import ProductCard from './ProductCard';
 
 async function getStripeProducts(){
   // Initialize Stripe
@@ -24,7 +25,9 @@ export default async function Home() {
 
   return (
     <main className="p-4 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3">
-      Main Text
+      {}
+      <ProductCard />
+
     </main>
   )
 }
