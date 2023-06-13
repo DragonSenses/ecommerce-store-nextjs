@@ -1,4 +1,5 @@
 import React from 'react';
+import { useRouter } from 'next/navigation';
 
 export default function ProductCard(props) {
   const { product } = props;
@@ -13,6 +14,8 @@ export default function ProductCard(props) {
     name,
     description
   } = productInfo;
+
+  const router = useRouter();
 
   function onProductClickHandler() {
     Router.push();
