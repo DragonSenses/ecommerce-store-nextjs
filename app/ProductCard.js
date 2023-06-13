@@ -18,12 +18,12 @@ export default function ProductCard(props) {
 
   const router = useRouter();
 
-  function onProductClickHandler() {
-    Router.push();
+  function onProductClick() {
+    router.push('/product?price_id=' + price_id);
   }
 
   return (
-    <div className='flex flex-col shadow bg-white hover:shadow-lg
+    <div onCLick={onProductClick} className='flex flex-col shadow bg-white hover:shadow-lg
     cursor-pointer'>
       <img 
         src={productInfo.images[0]} alt={name} 
