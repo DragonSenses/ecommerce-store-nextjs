@@ -14,6 +14,10 @@ export default function ProductCard(props) {
     description
   } = productInfo;
 
+  function onProductClickHandler() {
+    Router.push();
+  }
+
   return (
     <div className='flex flex-col shadow bg-white hover:shadow-lg
     cursor-pointer'>
