@@ -829,3 +829,19 @@ In `/app/page.js`, added a `gap-4`
   )
 }
 ```
+
+### Create onClick handler that routes us to a new page
+
+- Will not use `<Link>` tag for routing, that's because we want to add a bit more functionalities for the onClick handler
+- `<Link>` is great for main links because it is great for Search Engine Optimization (SEO), especially if you have different pages
+- For our products however, it is not as important for now
+
+Add this function to `ProductCard.js`
+
+```js
+  function onProductClickHandler() {
+    Router.push();
+  }
+```
+
+This will push us to a new route.
