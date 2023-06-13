@@ -845,3 +845,16 @@ Add this function to `ProductCard.js`
 ```
 
 This will push us to a new route.
+
+We will need to import `useRouter`, then create our router:
+
+```js
+import { useRouter } from 'next/navigation';
+
+export default function ProductCard(props) {
+  // ...
+  const router = useRouter();
+  // ...
+}
+```
+
