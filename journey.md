@@ -863,3 +863,22 @@ export default function ProductCard(props) {
 We got an error in the Chrome Dev Tools. So let's do the recommendation it told us to try.
 
 `ProductCard` component can be a client component, so we can follow the recommendation by adding `"use client"` at the top of the file.
+
+### Pushing to a new route
+
+If we are pushing to a new route, we need to first *create* the route.
+
+Create `/product` folder inside `/app`. Inside `/product`, create the file `page.js` which is the main page export.
+
+It will export a default function, which for now just returns a JSX `div` element with some text.
+
+In `/app/product/page.js`:
+```js
+export default function ProductPage() {
+  return(
+    <div>
+      Hello, this is the Product Page.
+    </div>
+  )
+}
+```
