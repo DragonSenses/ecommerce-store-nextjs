@@ -839,8 +839,8 @@ In `/app/page.js`, added a `gap-4`
 Add this function to `ProductCard.js`
 
 ```js
-  function onProductClickHandler() {
-    Router.push();
+  function onProductClick() {
+    router.push();
   }
 ```
 
@@ -881,4 +881,30 @@ export default function ProductPage() {
     </div>
   )
 }
+```
+
+### Implementing onClick handler
+
+Now what route do we push inside the onClick handler?
+
+```js
+  function onProductClick() {
+    router.push('/product?price_id=' + price_id);
+  }
+```
+
+So we push to a `/product` with a query `?price_id=` that's assigned the actual `price_id` of the product.
+
+Then we assign the onClick handler to the top level `div`
+
+```js
+
+  function onProductClick() {
+    router.push('/product?price_id=' + price_id);
+  }
+
+  return (
+    <div onCLick={onProductClick} className='flex flex-col shadow bg-white hover:shadow-lg
+    cursor-pointer'>
+    // ...
 ```
