@@ -858,3 +858,8 @@ export default function ProductCard(props) {
 }
 ```
 
+#### ERROR: `useRouter` only works in Client Components. Add the "use client" directive at the top of the file to use it.
+
+We got an error in the Chrome Dev Tools. So let's do the recommendation it told us to try.
+
+`ProductCard` component can be a client component, so we can follow the recommendation by adding `"use client"` at the top of the file.
