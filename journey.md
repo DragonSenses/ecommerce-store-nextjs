@@ -925,3 +925,23 @@ export default function ProductPage(props) {
 ```
 
 We do in fact have the `price_id` logged into the terminal.
+
+If you want to have [Dynamic Routes](https://nextjs.org/docs/pages/building-your-application/routing/dynamic-routes), you can make dynamic segment by wrapping a folder's name in square brackets: `[folderName]`. e.g., `[price_id]`, this would be the variable name you destructure out.
+
+Create the folder's location under `/app`.
+
+# Initializing Global State for our Project | Using Zustand
+
+At this point, we are going to set a product we select to our global state. Then read it in our second project.
+
+Create the folder named `(store)` under `/app`. That's right it has *parenthesis* or round brackets `()` wrapping around it. This means that the `app` folder will not recognize it as a route. It will not look for components, or anything like that within it.
+
+Inside `/app/(store)` we create a file `store.js`.
+
+Kill our server (CTRL + C) for now so we can install Zustand.
+
+[zustand](https://www.npmjs.com/package/zustand), a light-weight global state manager. You can even use it with persist methods to persist in localStorage. Let's install it in the terminal:
+
+```sh
+npm i zustand
+```
