@@ -969,6 +969,70 @@ This object store will contain all our parameters.
 - a `product` that gets selected (an object)
 
 ```js
+const useCart = create(
+  (set, get) => ({
+    cart: [],
+    product: {},
+    
+  })
+)
 ```
 
 After that, the object store will define a lot of methods that are going to be used to interact with our store.
+- `addItemToCart` method has a parameter, which we will destructure out for the `newItem`. Then when we have the `newItem` we will use the `set` method
+
+```js
+const useCart = create(
+  (set, get) => ({
+    cart: [],
+    product: {},
+    addItemToCart: (params) => {
+      const { newItem } = params;
+      set((state) => {
+
+        }
+      })
+    }
+  })
+)
+```
+
+- the `set` method receives the current state, and it returns a new state because the state is `immutable`. The new state is a version based off of the original state. We cannot mutate the state directly, we set a new state.
+
+- Inside the `set` we spread the state, and set a `cart` to a `newCart`
+- `newCart` is a new array that contains the current state of the cart, plus the `newItem`
+
+```js
+    addItemToCart: (params) => {
+      const { newItem } = params;
+      set((state) => {
+        const newCart = [...state.cart, newItem];
+        return {
+          ...state,
+          cart: newCart
+        }
+      })
+    }
+```
+
+First method done!
+
+```js
+const useCart = create(
+  (set, get) => ({
+    cart: [],
+    product: {},
+    addItemToCart: (params) => {
+      const { newItem } = params;
+      set((state) => {
+        const newCart = [...state.cart, newItem];
+        return {
+          ...state,
+          cart: newCart
+        }
+      })
+    },
+    
+  })
+)
+```
