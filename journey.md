@@ -908,3 +908,20 @@ Then we assign the onClick handler to the top level `div`
     cursor-pointer'>
     // ...
 ```
+
+Now that it has been assigned, when we click on a product on the page the `router` does re-route us by pushing the new route in the URL. The `price_id` is the query parameter. We are now in the `Product Page`.
+
+We can return to the home page by clicking the components within the header (the logo or the shopping cart).
+
+## Implementing `ProductPage`
+
+When we click on a product in the home page, it should route us with the `price_id` as the query. We can access this variable within the `ProductPage` component (the page) itself. We receive the props, destructure the `searchParams` from it, and log it.
+
+```js
+export default function ProductPage(props) {
+  const { searchParams } = props;
+  
+  console.log(searchParams);
+```
+
+We do in fact have the `price_id` logged into the terminal.
