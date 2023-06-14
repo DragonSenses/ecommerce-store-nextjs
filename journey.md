@@ -945,3 +945,30 @@ Kill our server (CTRL + C) for now so we can install Zustand.
 ```sh
 npm i zustand
 ```
+
+Now in `store.js` import zustand and create our method `useCart()`, which will create a `store` (see the zustand docs).
+
+```js
+import { create } from 'zustand';
+
+const useCart = create()
+```
+
+`create()` will take a callback function that has a `set` and `get` method. Inside that we return an object store.
+
+```js
+const useCart = create(
+  (set, get) => ({
+    
+  })
+)
+```
+
+This object store will contain all our parameters.
+- a `cart` that contains the list of all the products and their quantities
+- a `product` that gets selected (an object)
+
+```js
+```
+
+After that, the object store will define a lot of methods that are going to be used to interact with our store.
