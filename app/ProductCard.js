@@ -23,7 +23,7 @@ export default function ProductCard(props) {
   }
 
   return (
-    <div onCLick={onProductClick} className='flex flex-col shadow bg-white hover:shadow-lg
+    <div onClick={onProductClick} className='flex flex-col shadow bg-white hover:shadow-lg
     cursor-pointer'>
       <img 
         src={productInfo.images[0]} alt={name} 

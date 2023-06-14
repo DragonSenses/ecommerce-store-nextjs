@@ -904,7 +904,7 @@ Then we assign the onClick handler to the top level `div`
   }
 
   return (
-    <div onCLick={onProductClick} className='flex flex-col shadow bg-white hover:shadow-lg
+    <div onClick={onProductClick} className='flex flex-col shadow bg-white hover:shadow-lg
     cursor-pointer'>
     // ...
 ```
