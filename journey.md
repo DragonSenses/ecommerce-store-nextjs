@@ -1233,3 +1233,15 @@ In the terminal,
     at stringify (<anonymous>)
 null
 ```
+
+`ProductPage` is a server rendered component, where it actually has to be a client-rendered component. As we can see from the suggestion from the error: `Add the "use client" directive...`.
+
+We don't really need `ProductPage` to be loaded from the server, so let's just add it to the top of the page:
+
+```js
+"use client"
+```
+
+### Clicking on the product again
+
+Back to the home page, we click on a product and we don't see anything rendered yet other than the Product Page default text. But if we check the developer tools console:
