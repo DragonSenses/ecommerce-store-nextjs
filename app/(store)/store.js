@@ -13,7 +13,18 @@ const useCart = create(
           cart: newCart
         }
       })
-    },
-    
+    }, // end of addItem
+    removeItemFromCart: (params) => {
+      const { itemIndex } = params;
+      set((state) => {
+        const newCart = state.cart.filter((element, elementIndex) => {
+          return elementIndex !== itemIndex;
+        });
+        return {
+          ...state,
+          cart: newCart
+        }
+      })
+    } // end of removeItem
   })
 )
