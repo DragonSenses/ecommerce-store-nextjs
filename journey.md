@@ -1082,3 +1082,19 @@ The next method clears out the cart and empties all items. It does not take any 
       })
     }, // end of emptyCart
 ```
+
+## Set Product method
+
+`setProduct` will take `params` which will contain `newProduct`. We call the `set()` method to return the current state while setting the `product`
+
+```js
+    setProduct: (params) => {
+      const { newProduct } = params;
+      set((state) => {
+        return {
+          ...state,
+          product: newProduct
+        }
+      })
+    },
+```
