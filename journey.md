@@ -1107,4 +1107,64 @@ Now that the store is configured, we need to export it. So at the end of the fil
 export default useCart;
 ```
 
+## Back to `ProductCard`
+
 So now we can access the store in other components.
+
+In `ProductCard.js`
+
+```js
+import useCart from './(store)/store';
+```
+
+We can set the state to the product that is selected. First let's access the function:
+
+```js
+const setProduct = useCart(state => state.setProduct);
+```
+
+This will now give us access to the `setProduct` function from the Store. We will use it for the onClick handler `onProductClick`.
+
+```js
+  const setProduct = useCart(state => state.setProduct);
+
+  function onProductClick() {
+    const newProduct = {};
+    setProduct();
+    router.push('/product?price_id=' + price_id);
+  }
+```
+
+We invoke `setProduct`, but first we create the `newProduct` object.
+
+```js
+const newProduct = {
+  name,
+  description,
+  price_id,
+  cost,
+  productInfo
+};
+```
+
+`newProduct` now contains all the info that we need. We will pass this object into `setProduct`.
+
+```js
+  function onProductClick() {
+    const newProduct = {
+      name,
+      description,
+      price_id,
+      cost,
+      productInfo
+    };
+    setProduct({ newProduct });
+    router.push('/product?price_id=' + price_id);
+  }
+```
+
+This will set `newProduct` to our state and re-route us to a new page. We should be able to click a `ProductInfo` component and get re-navigated, but this time we should have set that state.
+
+Now on the actual `ProductPage` we can access that product!
+
+### test here
