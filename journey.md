@@ -1245,3 +1245,56 @@ We don't really need `ProductPage` to be loaded from the server, so let's just a
 ### Clicking on the product again
 
 Back to the home page, we click on a product and we don't see anything rendered yet other than the Product Page default text. But if we check the developer tools console:
+
+```sh
+Object
+page.js:14 undefined
+page.js:15 Object
+```
+
+We consoled out the object(s):
+
+For `searchParams`, in the line `console.log(searchParams);`
+
+```sh
+{
+    "price_id": "price_1NHdRIJ4MEfvtz7t6WZZCDKS"
+}
+```
+
+And as for `page.js:15`, the line `console.log(product);` yields:
+
+```sh
+{
+    "name": "Premium Pineapple",
+    "description": "Only the most organic and freshest pineapple on the market.",
+    "price_id": "price_1NHdRIJ4MEfvtz7t6WZZCDKS",
+    "cost": 100000,
+    "productInfo": {
+        "id": "prod_O3kxYAIRht8S59",
+        "object": "product",
+        "active": true,
+        "attributes": [],
+        "created": 1686448291,
+        "default_price": "price_1NHdRIJ4MEfvtz7t6WZZCDKS",
+        "description": "Only the most organic and freshest pineapple on the market.",
+        "images": [
+            "https://files.stripe.com/links/MDB8YWNjdF8xTkhIelNKNE1FZnZ0ejd0fGZsX3Rlc3RfQU85dnlCOENQS0hJbldMNTNVeGZnNEVX00QLFD33nY"
+        ],
+        "livemode": false,
+        "metadata": {},
+        "name": "Premium Pineapple",
+        "package_dimensions": null,
+        "shippable": null,
+        "statement_descriptor": null,
+        "tax_code": null,
+        "type": "service",
+        "unit_label": null,
+        "updated": 1686448292,
+        "url": null
+    }
+}
+```
+
+Which is awesome. This means **we now have a *Global State* that we can manage, access and/or update from any of our pages!**.
+
