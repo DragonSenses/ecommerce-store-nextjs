@@ -14,6 +14,10 @@ export default function ProductPage(props) {
   console.log(price_id);
   console.log(product);
 
+  if(!product?.name){
+    window.location.href = '/';
+  }
+  
   return(
     <div>
       Hello, this is the Product Page.
