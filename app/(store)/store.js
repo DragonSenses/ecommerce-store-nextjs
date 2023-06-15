@@ -25,6 +25,15 @@ const useCart = create(
           cart: newCart
         }
       })
-    } // end of removeItem
+    }, // end of removeItem
+    emptyCart: () => {
+      set((state) => {
+        const newCart = [];
+        return {
+          ...state,
+          cart: newCart
+        }
+      })
+    }, // end of emptyCart
   })
 )
