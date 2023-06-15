@@ -1341,3 +1341,50 @@ const useCart = create(
   })
 )
 ```
+
+# **(Technical Debt)** Downside: if we refresh the `ProductPage` we lose access to the store
+
+If we refresh the page with `[F5]`, right after we clicked a `ProductCard` in the home-page and get re-routed, we lose access to the information of that product in the store.
+
+Here is what it says in Chrome Dev Tools console:
+
+```sh
+{price_id: 'price_1NHdRIJ4MEfvtz7t6WZZCDKS'}price_id: "price_1NHdRIJ4MEfvtz7t6WZZCDKS"[[Prototype]]: Object
+page.js:14 undefined
+page.js:15 {}
+```
+
+`page.js:15`, the line `console.log(product);` yields an empty object! `{}`.
+
+## Important things to note
+
+> "A crucial part of web applications is that when you hit refresh - you generally get back to the same state"
+
+## Attempt 1: route to the homepage instead of handling the URL context
+
+**The issue with this attempt is that users cannot share URLs to products.**
+
+So inside the `ProductPage`:
+
+- We check if we don't have access to the name of the product. Consequently, that also means we don't have access to the rest of the product.
+- Then send the user back to the home page
+
+```js
+  if(!product?.name){
+    window.location.href = '/';
+  }
+```
+
+With context:
+```js
+export default function ProductPage(props) {
+  const { searchParams } = props;
+  const { price_id } = props;
+  const product = useCart(state => state.product);
+
+  if(!product?.name){
+    window.location.href = '/';
+  }
+```
+
+So if we refresh the page, it sends the user back to the home route.
