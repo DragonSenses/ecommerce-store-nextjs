@@ -1,6 +1,7 @@
 "use client"
 import React from 'react';
 import { useRouter } from 'next/navigation';
+import useCart from './(store)/store';
 
 export default function ProductCard(props) {
   const { product } = props;
@@ -15,6 +16,7 @@ export default function ProductCard(props) {
     name,
     description
   } = productInfo;
+
 
   const router = useRouter();
 
