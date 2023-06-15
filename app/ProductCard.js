@@ -17,10 +17,19 @@ export default function ProductCard(props) {
     description
   } = productInfo;
 
+  const setProduct = useCart(state => state.setProduct);
 
   const router = useRouter();
 
   function onProductClick() {
+    const newProduct = {
+      name,
+      description,
+      price_id,
+      cost,
+      productInfo
+    };
+    setProduct({ newProduct });
     router.push('/product?price_id=' + price_id);
   }
 
