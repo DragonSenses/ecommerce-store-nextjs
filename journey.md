@@ -1066,3 +1066,19 @@ Now let's create another method called `removeItemFromCart`. Quite similarly to 
       })
     }
 ```
+
+## Empty method
+
+The next method clears out the cart and empties all items. It does not take any parameters, and simply returns the state with the `newCart` being an empty array.
+
+```js
+    emptyCart: () => {
+      set((state) => {
+        const newCart = [];
+        return {
+          ...state,
+          cart: newCart
+        }
+      })
+    }, // end of emptyCart
+```
