@@ -1098,3 +1098,13 @@ The next method clears out the cart and empties all items. It does not take any 
       })
     },
 ```
+
+## Export the Object Store
+
+Now that the store is configured, we need to export it. So at the end of the file, put the line:
+
+```js
+export default useCart;
+```
+
+So now we can access the store in other components.

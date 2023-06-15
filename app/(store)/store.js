@@ -46,3 +46,5 @@ const useCart = create(
     }, // end of emptyCart
   })
 )
+
+export default useCart;
