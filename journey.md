@@ -1298,3 +1298,46 @@ And as for `page.js:15`, the line `console.log(product);` yields:
 
 Which is awesome. This means **we now have a *Global State* that we can manage, access and/or update from any of our pages!**.
 
+# Set-Up for Checkout Page
+
+Back in the object store, we need to create a method that gives the user a `Modal`.
+
+This `openModal` will have a default value of false. Then we define a method at the top that `setOpenModal` which changes the `openModal` state.
+
+The state variable:
+```js
+    openModal: false,
+```
+
+The method to set the state variable:
+```js
+    setOpenModal: () => {
+      set((state) => {
+        return {
+          ...state,
+          openModal: !state.openModal
+        }
+      })
+    },
+```
+
+Together inside the `store`:
+
+```js
+const useCart = create(
+  (set, get) => ({
+    cart: [],
+    product: {},
+    openModal: false,
+    setOpenModal: () => {
+      set((state) => {
+        return {
+          ...state,
+          openModal: !state.openModal
+        }
+      })
+    },
+    // more methods...
+  })
+)
+```
