@@ -1,3 +1,5 @@
+"use client"
+
 import useCart from "../(store)/store";
 
 export default function ProductPage(props) {
