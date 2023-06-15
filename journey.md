@@ -1223,4 +1223,13 @@ export default function ProductPage(props) {
   console.log(product);
 ```
 
-### Issue: 
+### Issue: `useRef` only works in Client Components
+
+In the terminal,
+```sh
+- error node_modules\use-sync-external-store\cjs\use-sync-external-store-shim\with-selector.development.js (51:16) @ useRef
+- error useRef only works in Client Components. Add the "use client" directive at the top of the file to use it. Read more: https://nextjs.org/docs/messages/react-client-hook-in-server-component
+    at ProductPage (./app/product/page.js:13:77)
+    at stringify (<anonymous>)
+null
+```
