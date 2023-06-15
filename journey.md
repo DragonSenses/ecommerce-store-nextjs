@@ -945,6 +945,7 @@ Kill our server (CTRL + C) for now so we can install Zustand.
 ```sh
 npm i zustand
 ```
+## Zustand | Creating the Object Store
 
 Now in `store.js` import zustand and create our method `useCart()`, which will create a `store` (see the zustand docs).
 
@@ -977,6 +978,8 @@ const useCart = create(
   })
 )
 ```
+
+## Zustand | Creating a method in the objectStore
 
 After that, the object store will define a lot of methods that are going to be used to interact with our store.
 - `addItemToCart` method has a parameter, which we will destructure out for the `newItem`. Then when we have the `newItem` we will use the `set` method
@@ -1035,4 +1038,31 @@ const useCart = create(
     
   })
 )
+```
+
+## Zustand | Creating another method in the objectStore
+
+Now let's create another method called `removeItemFromCart`. Quite similarly to `addItemToCart`, it will take in `params`.
+
+- From `params` we will take extract out the `itemIndex` which will indicate what the index of the item we wish to remove.
+
+- Call the `set` method which will return the `...state` and the `cart` assigned to a `newCart`
+
+- `newCart` will be just the `state.cart.filter()` which will filter out the item we wish to remove
+
+- Inside the `filter`, in the callback function, we will take the `element` & `elementIndex` to return every item whose `elementIndex` is not the same as the `itemIndex`
+
+```js
+    removeItemFromCart: (params) => {
+      const { itemIndex } = params;
+      set((state) => {
+        const newCart = state.cart.filter((element, elementIndex) => {
+          return elementIndex !== itemIndex;
+        });
+        return {
+          ...state,
+          cart: newCart
+        }
+      })
+    }
 ```
