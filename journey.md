@@ -1167,4 +1167,60 @@ This will set `newProduct` to our state and re-route us to a new page. We should
 
 Now on the actual `ProductPage` we can access that product!
 
-### test here
+## Back to `ProductPage`
+
+In `/app/product/page.js`, we can access that `setProduct()`.
+
+First the import:
+```js
+import useCart from "../(store)/store";
+```
+
+Then inside we can access the state and return `state.product`. 
+
+```js
+export default function ProductPage(props) {
+  const { searchParams, price_id  } = props;
+
+  // Use the hook, select the state and the component will re-render on changes.
+  const product = useCart(state => state.product);
+  
+  // ...
+}
+```
+
+Assuming that the `setProduct` method works correctly from the store, then we should have access to the product inside `store.js` because the `product: {}` will be set:
+
+```js
+const useCart = create(
+  (set, get) => ({
+    cart: [],
+    product: {},
+    setProduct: (params) => {
+      const { newProduct } = params;
+      set((state) => {
+        return {
+          ...state,
+          product: newProduct
+        }
+      })
+    },
+```
+
+Now let's log the `product` to see if it all works. So inside `page.js`:
+
+```js
+import useCart from "../(store)/store";
+
+export default function ProductPage(props) {
+  const { searchParams, price_id  } = props;
+
+  const product = useCart(state => state.product);
+
+  // log the variables
+  console.log(searchParams);
+  console.log(price_id);
+  console.log(product);
+```
+
+### Issue: 
