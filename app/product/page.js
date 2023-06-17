@@ -38,11 +38,14 @@ export default function ProductPage(props) {
           />
         </div>
         <div className="flex flex-col gap-2 p-4">
-          <div className="flex md:flex-col text-xl md:items-start items-center justify-between">
+          <div className="flex md:flex-col text-xl md:items-start items-center
+          justify-between gap-2">
             <h3>{name}</h3>
-            <p className="">${cost / 100}</p>
+            <p className="md:text-base">${cost / 100}</p>
           </div>
           <p className="text-sm">{description}</p>
+          <button className='bg-slate-700 text-white hover:bg-slate-500
+          cursor-pointer ml-auto px-4 py-2'>Add to Cart</button>
         </div>
       </div>
     </div>
