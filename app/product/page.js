@@ -4,7 +4,6 @@ import useCart from "../(store)/store";
 
 export default function ProductPage(props) {
   const { searchParams } = props;
-
   const { price_id } = searchParams;
 
   const product = useCart(state => state.product);
@@ -20,6 +19,14 @@ export default function ProductPage(props) {
   if(!product?.name){
     window.location.href = '/';
   }
+
+  // Destructure the information we need from the product
+  const {
+    name,
+    description,
+    unit_amount: cost,
+    product: productInfo,
+  } = product;
 
   return(
     <div>
