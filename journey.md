@@ -1388,3 +1388,36 @@ export default function ProductPage(props) {
 ```
 
 So if we refresh the page, it sends the user back to the home route.
+
+[Stripe API - Retrieving a product](https://stripe.com/docs/api/products/retrieve?lang=node).
+
+
+---
+
+# Creating the Product Page
+
+Assuming all things work and we are able to get the `product`, let's destructure out the information we need from the product.
+
+```js
+  // Destructure the information we need from the product
+  const {
+    name,
+    description,
+    cost,
+    productInfo,
+  } = product;
+```
+
+## Styling the Product Page
+
+The layout:
+
+```js
+  return(
+    <div className="flex flex-col">
+      <div className="grid grid-cols-1 md:grid-cols-2 w-full max-w-[1000px] mx-auto">
+        
+      </div>
+    </div>
+  )
+```
