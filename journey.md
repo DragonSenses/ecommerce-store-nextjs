@@ -1466,4 +1466,10 @@ Some changes to ProductInfo container on the ProductPage:
 Going to add some more padding to the top component of the Product Page:
 
 ```js
+  return(
+    <div className="flex flex-col p-4">
+      // ...
+    </div>
+  )
+}
 ```
