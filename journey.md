@@ -1444,3 +1444,26 @@ Adding the image, name, price and description:
     </div>
   )
 ```
+
+Some changes to ProductInfo container on the ProductPage:
+
+```js
+        <div className="flex flex-col gap-2 p-4">
+          <div className="flex md:flex-col text-xl md:items-start items-center
+          justify-between gap-2">
+            <h3>{name}</h3>
+            <p className="md:text-base">${cost / 100}</p>
+          </div>
+          <p className="text-sm flex-1">{description}</p>
+          <button className='bg-slate-700 text-white hover:bg-slate-500
+          cursor-pointer ml-auto px-4 py-2'>Add to Cart</button>
+        </div>
+```
+
+- Added a button below the `description`
+- Gave `description` a `flex-1` to push button down to the bottom right
+
+Going to add some more padding to the top component of the Product Page:
+
+```js
+```
