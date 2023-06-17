@@ -24,13 +24,18 @@ export default function ProductPage(props) {
   const {
     name,
     description,
-    unit_amount: cost,
-    product: productInfo,
+    cost,
+    productInfo,
   } = product;
 
   return(
-    <div>
-      Hello, this is the Product Page.
+    <div className="flex flex-col">
+      <div className="grid grid-cols-1 md:grid-cols-2 w-full max-w-[1000px] mx-auto">
+        <img 
+          src={productInfo.images[0]} alt={name} 
+          className='w-full h-full object-cover' 
+        />
+      </div>
     </div>
   )
 }
