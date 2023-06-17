@@ -37,10 +37,10 @@ export default function ProductPage(props) {
             className='w-full h-full object-cover' 
           />
         </div>
-        <div className="flex flex-col gap-2">
-          <div className="flex text-xl sm:items-center md:flex-col justify-between">
+        <div className="flex flex-col gap-2 p-4">
+          <div className="flex md:flex-col text-xl md:items-start items-center justify-between">
             <h3>{name}</h3>
-            <p>{cost / 100}</p>
+            <p className="">${cost / 100}</p>
           </div>
           <p className="text-sm">{description}</p>
         </div>
