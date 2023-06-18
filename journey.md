@@ -1491,7 +1491,7 @@ Added some icons from font-awesome for the footer:
 
 ```js
 <footer className='flex items-center flex-wrap justify-center
-border-t border-solid border-slate-300 p-10'>
+border-t border-solid border-slate-300'>
   <div className="text-2xl">
     <span className="pr-4">FOOTER</span>
     <i className="text-slate-700 hover:text-slate-500 cursor-pointer fa-regular fa-envelope"></i>
@@ -1499,3 +1499,14 @@ border-t border-solid border-slate-300 p-10'>
   </div>
 </footer>
 ```
+
+Wrapped icons in links:
+
+```js
+<Link href={'/'} 
+target="_blank" rel="noopener noreferrer">
+  <i className="pl-4 fa-brands fa-github text-slate-700 hover:text-slate-500 cursor-pointer"></i>
+</Link>
+```
+
+[Stackoverflow response on target="_blank" and rel="noopener no referrer"](https://stackoverflow.com/questions/50709625/link-with-target-blank-and-rel-noopener-noreferrer-still-vulnerable), although all current versions of major browsers automatically use this behavior of `rel="noopener"` for any `target="_blank"` see [chromestatus](https://chromestatus.com/feature/6140064063029248). I still include it anyway just to be extra safe.
