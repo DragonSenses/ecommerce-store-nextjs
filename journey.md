@@ -1510,3 +1510,47 @@ target="_blank" rel="noopener noreferrer">
 ```
 
 [Stackoverflow response on target="_blank" and rel="noopener no referrer"](https://stackoverflow.com/questions/50709625/link-with-target-blank-and-rel-noopener-noreferrer-still-vulnerable), although all current versions of major browsers automatically use this behavior of `rel="noopener"` for any `target="_blank"` see [chromestatus](https://chromestatus.com/feature/6140064063029248). I still include it anyway just to be extra safe.
+
+## Functionality: Add to Cart
+
+In our `Product Page` @ `/app/product/page.js`, let's define a function to make the `Add to Cart` button work.
+
+Find the method we defined in our store and access that function. It is a typical convention to keep the names consistent to what you've saved it as in the store.
+
+```js
+const addItemToCart = useCart(state => state.addItemToCart);
+```
+
+```js
+export default function ProductPage(props) {
+  const { searchParams } = props;
+  const { price_id } = searchParams;
+
+  const product = useCart(state => state.product);
+  const addItemToCart = useCart(state => state.addItemToCart);
+  // ...
+```
+
+Now create the function that will handle this behavior:
+```js
+  function handleAddToCart() {
+
+  }
+```
+
+Looking back at the store, let's check what it expects:
+
+```js
+    addItemToCart: (params) => {
+      const { newItem } = params;
+      set((state) => {
+        const newCart = [...state.cart, newItem];
+        return {
+          ...state,
+          cart: newCart
+        }
+      })
+    }, // end of addItem
+```
+
+It expects a new item
