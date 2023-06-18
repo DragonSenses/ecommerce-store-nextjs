@@ -1473,3 +1473,16 @@ Going to add some more padding to the top component of the Product Page:
   )
 }
 ```
+
+# Working on the Footer
+
+The footer can be found in `layout.js`. Notice that the sub-pages are also wrapped by the layout!
+
+Let's start styling it.
+
+```js
+<footer className='flex items-center flex-wrap justify-center
+border-t border-solid border-slate-300 p-10'>
+  FOOTER
+</footer>
+```
