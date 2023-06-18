@@ -7,6 +7,7 @@ export default function ProductPage(props) {
   const { price_id } = searchParams;
 
   const product = useCart(state => state.product);
+  const addItemToCart = useCart(state => state.addItemToCart);
 
   // log the variables
   console.log('searchParams are:')
@@ -20,14 +21,20 @@ export default function ProductPage(props) {
     window.location.href = '/';
   }
 
+  
   // Destructure the information we need from the product
+  // Used to dynamically render the product page
   const {
     name,
     description,
     cost,
     productInfo,
   } = product;
+  
+  function handleAddToCart() {
 
+  }
+  
   return(
     <div className="flex flex-col p-4">
       <div className="grid grid-cols-1 md:grid-cols-2 w-full max-w-[1000px] mx-auto">
