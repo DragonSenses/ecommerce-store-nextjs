@@ -1553,4 +1553,18 @@ Looking back at the store, let's check what it expects:
     }, // end of addItem
 ```
 
-It expects a new item
+It expects a `newItem`. 
+
+So let's create that `newItem` object with the properties of `price_id` and `quantity`.
+
+```js
+  function handleAddToCart() {
+    const newItem = {
+      price_id: price_id,
+      quantity: 1,
+    }
+    addItemToCart({newItem});
+  }
+```
+
+We pass in this `newItem` inside of an object. The store method `addItemToCart` will destructure it and set it to our cart.
