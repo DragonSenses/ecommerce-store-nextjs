@@ -33,7 +33,10 @@ export default function RootLayout({ children }) {
           {children}
         </div>
 
-        <footer className=''>FOOTER</footer>
+        <footer className='flex items-center flex-wrap justify-center
+        border-t border-solid border-slate-300 p-10'>
+          FOOTER
+        </footer>
 
       </body>
     </html>
