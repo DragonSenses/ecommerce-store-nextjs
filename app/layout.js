@@ -35,7 +35,11 @@ export default function RootLayout({ children }) {
 
         <footer className='flex items-center flex-wrap justify-center
         border-t border-solid border-slate-300 p-10'>
-          FOOTER
+          <div className="text-2xl">
+            <span className="pr-4">FOOTER</span>
+            <i className="text-slate-700 hover:text-slate-500 cursor-pointer fa-regular fa-envelope"></i>
+            <i className="pl-4 fa-brands fa-github"></i>
+          </div>
         </footer>
 
       </body>

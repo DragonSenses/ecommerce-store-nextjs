@@ -1486,3 +1486,16 @@ border-t border-solid border-slate-300 p-10'>
   FOOTER
 </footer>
 ```
+
+Added some icons from font-awesome for the footer:
+
+```js
+<footer className='flex items-center flex-wrap justify-center
+border-t border-solid border-slate-300 p-10'>
+  <div className="text-2xl">
+    <span className="pr-4">FOOTER</span>
+    <i className="text-slate-700 hover:text-slate-500 cursor-pointer fa-regular fa-envelope"></i>
+    <i className="pl-4 fa-brands fa-github"></i>
+  </div>
+</footer>
+```
