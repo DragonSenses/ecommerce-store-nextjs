@@ -34,11 +34,17 @@ export default function RootLayout({ children }) {
         </div>
 
         <footer className='flex items-center flex-wrap justify-center
-        border-t border-solid border-slate-300 p-10'>
-          <div className="text-2xl">
+        border-t border-solid border-slate-300 p-4 md:p-8'>
+          <div className="text-2xl sm:text-3xl md:text-4xl">
             <span className="pr-4">FOOTER</span>
-            <i className="text-slate-700 hover:text-slate-500 cursor-pointer fa-regular fa-envelope"></i>
-            <i className="pl-4 fa-brands fa-github"></i>
+            <Link href={'/'}
+            target="_blank" rel="noopener noreferrer">
+              <i className="fa-regular fa-envelope text-slate-700 hover:text-slate-500 cursor-pointer"></i>
+            </Link>
+            <Link href={'/'} 
+            target="_blank" rel="noopener noreferrer">
+              <i className="pl-4 fa-brands fa-github text-slate-700 hover:text-slate-500 cursor-pointer"></i>
+            </Link>
           </div>
         </footer>
 
