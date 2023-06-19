@@ -13,8 +13,15 @@ export default function Header() {
       <Link href={'/'}>
         <h1 className='uppercase cursor-pointer hover:scale-110'>Shop</h1>
       </Link>
+      <div className="relative grid place-items-center">
+        {cartItems.length > 0 && (
+          <div className="absolute bg-blue-400 text-white rounded-full top-0 right-0">
+            <p>{cartItems.length}</p>
+          </div>
+        )}
         <i className="fa-solid fa-cart-shopping cursor-pointer
           hover:text-slate-500"></i>
+      </div>
     </header>
   )
 }

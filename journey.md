@@ -1725,3 +1725,23 @@ import useCart from './(store)/store';
 export default function Header() {
   const cartItems = useCart(state => state.cart);
 ```
+
+We access the state and return `state.cart`.
+
+### Updating the cart icon
+
+We are going to wrap the cart icon in a div. This div will also contain a *conditional render* of another `div` containg the number of `cartItems`.
+
+```js
+      <div className="relative grid place-items-center">
+        {cartItems.length > 0 && (
+          <div className="absolute top-0 right-0">
+            <p>{cartItems.length}</p>
+          </div>
+        )}
+        <i className="fa-solid fa-cart-shopping cursor-pointer
+          hover:text-slate-500"></i>
+      </div>
+```
+
+Let's work on the conditional render.
