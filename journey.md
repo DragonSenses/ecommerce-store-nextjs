@@ -1705,11 +1705,23 @@ export default function RootLayout({ children }) {
       </head>
 
       <body className={'min-h-screen flex flex-col relative ' + inter.className}>
-    
+
         <Header />
 
         <div className="flex-1">
           {children}
         </div>
+```
 
+## Updating the Header on Add to Cart
+
+Now that the `Header` logic is in a separate place, what this allows us to do is avoid polluting the `layout.js` when we want to add specific logic to the `Header`.
+
+We can now import our store and access our cart items:
+
+```js
+import useCart from './(store)/store';
+
+export default function Header() {
+  const cartItems = useCart(state => state.cart);
 ```

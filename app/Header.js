@@ -1,8 +1,11 @@
 "use client"
 import React from 'react';
-import Link from 'next/link'
+import Link from 'next/link';
+import useCart from './(store)/store';
 
 export default function Header() {
+  const cartItems = useCart(state => state.cart);
+
   return (
     <header className='flex items-center justify-between sticky
     top-0 p-6 bg-slate-200 border-b border-solid border-blue-900
