@@ -1394,6 +1394,14 @@ So if we refresh the page, it sends the user back to the home route.
 ## Attempt 2: Refactoring
 
 Some notes:
+- In Nextjs, by default all components are server-side rendered.
+- Power of Nextjs is when data is fecthed on the server using Server Compoenents. It creates things in advanced rather than on the client. Reduces loading times.
+- Can name a file like `page.js` but the functional component inside the file does not have to have that name `ProductPage`.
+
+Refactoring:
+- Defining function in a same file does save space, but would like to avoid code reduplication
+- **Create a library outside of the `app` directory called `lib`**
+- Create a function that we can export, this will be the `getStripeProducts()`
 - 
 
 ---
