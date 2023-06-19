@@ -1432,7 +1432,11 @@ Refactoring:
 - **Create a library outside of the `app` directory called `lib`**
 - Create a function that we can export, this will be the `getStripeProducts()`
 
+
+### Using an external library to store functions
+
 So inside `/lib/getStripeProducts.js`:
+
 ```js
 import Stripe from 'stripe';
 
@@ -1454,7 +1458,35 @@ export async function getStripeProducts(){
 }
 ```
 
+### Import the function from external library
 
+At the top of `page.js` inside `/app`, we type "import getStripeProducts" then let VSCode auto-complete from there. As we can see:
+
+```js
+import { getStripeProducts } from '@/lib/getStripeProducts';
+```
+
+It uses the `@` symbol! This is an "alias" to module paths. 
+
+[Nextjs docs on Absolute Imports and Module Path Aliases](https://nextjs.org/docs/app/building-your-application/configuring/absolute-imports-and-module-aliases).
+
+
+Now our `page.js` is our server component. It is going to request this as it builds the website.
+
+```js
+import ProductCard from './ProductCard';
+import { getStripeProducts } from '@/lib/getStripeProducts';
+
+export default async function Home() {
+  const products = await getStripeProducts();
+
+  return (
+    // ...
+  )
+}
+```
+
+## Fixing the downside here
 
 ---
 
