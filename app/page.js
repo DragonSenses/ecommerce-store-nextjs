@@ -1,10 +1,8 @@
-import Image from 'next/image';
 import ProductCard from './ProductCard';
 import { getStripeProducts } from '@/lib/getStripeProducts';
 
 export default async function Home() {
   const products = await getStripeProducts();
-  console.log(products);
 
   return (
     <main className="p-4 flex flex-col">
