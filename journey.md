@@ -563,6 +563,35 @@ Now we get the actual products in the terminal:
     // ...
 ```
 
+### Stripe response:
+
+What is `res` exactly? With `console.log(res)`, here it is logged:
+
+```js
+{
+  object: 'list',
+  data: [
+    {
+      id: 'price_1NHdRIJ4MEfvtz7t6WZZCDKS',
+      // ...
+    },
+    {
+      id: 'price_1NHdP5J4MEfvtz7tmqJunj52',
+      // ...
+    },
+    {
+      id: 'price_1NHdMqJ4MEfvtz7tfUzEd2pz',
+      // ...
+    }
+  ],
+  has_more: false,
+  url: '/v1/prices'
+}
+```
+
+`res` has the properties:
+-`object`, `data`, `has_more` and `url`
+
 # Creating Components
 
 You cannot randomly name components because they have **reserved** names.
@@ -1402,7 +1431,30 @@ Refactoring:
 - Defining function in a same file does save space, but would like to avoid code reduplication
 - **Create a library outside of the `app` directory called `lib`**
 - Create a function that we can export, this will be the `getStripeProducts()`
-- 
+
+So inside `/lib/getStripeProducts.js`:
+```js
+import Stripe from 'stripe';
+
+export async function getStripeProducts(){
+  // Initialize Stripe
+  const stripe = new Stripe(process.env.STRIPE_SECRET ?? '', {
+    apiVersion: '2020-08-27'
+  });
+
+  // Access our product data, by returning a list of prices
+  const res = await stripe.prices.list({
+    expand: ['data.product']
+  });
+
+  // Access the prices of our product data
+  const prices = res.data;
+
+  return prices;
+}
+```
+
+
 
 ---
 
