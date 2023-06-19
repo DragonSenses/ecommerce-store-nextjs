@@ -1665,8 +1665,30 @@ So let's create that `newItem` object with the properties of `price_id` and `qua
 
 We pass in this `newItem` inside of an object. The store method `addItemToCart` will destructure it and set it to our cart.
 
-## Working on the Header
+## Refactoring the Header
 
 Upon adding the product to the cart, we want the header to update.
 
-Create a new component on the root level called `root.js`.
+Create a new component on the root level called `Header.js`, a react functional component. This will be client-side, so it should have the `"use client"` directive at the top.
+
+In `layout.js` let's move the header logic, so all the code contained within the `<header>` tag and put it as the return value of the `Header.js` component. Remember to import the `Link`.
+
+```js
+"use client"
+import React from 'react';
+import Link from 'next/link'
+
+export default function Header() {
+  return (
+    <header className='flex items-center justify-between sticky
+    top-0 p-6 bg-slate-200 border-b border-solid border-blue-900
+    shadow-md z-50 text-2xl sm:text-3xl md:text-4xl sm:p-8'>
+      <Link href={'/'}>
+        <h1 className='uppercase cursor-pointer hover:scale-110'>Shop</h1>
+      </Link>
+        <i className="fa-solid fa-cart-shopping cursor-pointer
+          hover:text-slate-500"></i>
+    </header>
+  )
+}
+```
