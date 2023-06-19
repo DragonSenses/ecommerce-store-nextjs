@@ -1744,4 +1744,37 @@ We are going to wrap the cart icon in a div. This div will also contain a *condi
       </div>
 ```
 
-Let's work on the conditional render.
+Let's work on the conditional render. For styling purposes, let's set that condition to true:
+
+```js
+        {true > 0 && (
+          <div className="absolute bg-blue-400 text-white rounded-full top-0 right-0">
+            <p>{cartItems.length}</p>
+          </div>
+        )}
+```
+
+It looks ridiculous, so let's fix it.
+
+Going to add these utility classes to the `div` to create a blue circlular background that will contain the number. It should be centered.
+
+```js
+<div className="absolute aspect-square h-6 grid place-items-center
+  bg-blue-400 text-white rounded-full top-0 right-0">
+```
+
+Now we have to move it with to the top right of the cart by giving it a `-translate-y-full translate-x-full`.
+
+After that we see that it moves it too far out, so let's adjust by 1/2.
+
+Adjust the text-size of the `p` within to small and tune it down to `h-5` and it is just right.
+
+```js
+<div className="absolute aspect-square h-5 grid place-items-center
+  bg-blue-400 text-white rounded-full top-0 right-0
+  -translate-y-1/2 translate-x-1/2">
+  <p className='text-sm'>{cartItems.length}</p>
+</div>
+```
+
+Now revert the conditional from `true` to `cartItems.length > 0`. Now the numbers icon will conditionally render when items are added to the cart.
