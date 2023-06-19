@@ -1391,6 +1391,10 @@ So if we refresh the page, it sends the user back to the home route.
 
 [Stripe API - Retrieving a product](https://stripe.com/docs/api/products/retrieve?lang=node).
 
+## Attempt 2: Refactoring
+
+Some notes:
+- 
 
 ---
 
@@ -1511,7 +1515,7 @@ target="_blank" rel="noopener noreferrer">
 
 [Stackoverflow response on target="_blank" and rel="noopener no referrer"](https://stackoverflow.com/questions/50709625/link-with-target-blank-and-rel-noopener-noreferrer-still-vulnerable), although all current versions of major browsers automatically use this behavior of `rel="noopener"` for any `target="_blank"` see [chromestatus](https://chromestatus.com/feature/6140064063029248). I still include it anyway just to be extra safe.
 
-## Functionality: Add to Cart
+# Functionality: Add to Cart
 
 In our `Product Page` @ `/app/product/page.js`, let's define a function to make the `Add to Cart` button work.
 
@@ -1568,3 +1572,9 @@ So let's create that `newItem` object with the properties of `price_id` and `qua
 ```
 
 We pass in this `newItem` inside of an object. The store method `addItemToCart` will destructure it and set it to our cart.
+
+## Working on the Header
+
+Upon adding the product to the cart, we want the header to update.
+
+Create a new component on the root level called `root.js`.
