@@ -1692,3 +1692,24 @@ export default function Header() {
   )
 }
 ```
+
+And substitute the header logic with a component in `layout.js`:
+
+```js
+export default function RootLayout({ children }) {
+  return (
+    <html lang="en">
+
+      <head>
+        <link rel="stylesheet" href="..." />
+      </head>
+
+      <body className={'min-h-screen flex flex-col relative ' + inter.className}>
+    
+        <Header />
+
+        <div className="flex-1">
+          {children}
+        </div>
+
+```
