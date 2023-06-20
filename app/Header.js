@@ -2,14 +2,21 @@
 import React from 'react';
 import Link from 'next/link';
 import useCart from './(store)/store';
+import Modal from './Modal';
 
 export default function Header() {
   const cartItems = useCart(state => state.cart);
+  const openModal = useCart(state => state.openModal);
 
   return (
     <header className='flex items-center justify-between sticky
     top-0 p-6 bg-slate-200 border-b border-solid border-blue-900
     shadow-md z-50 text-2xl sm:text-3xl md:text-4xl sm:p-8'>
+
+      {openModal && (
+        <Modal />
+      )}
+
       <Link href={'/'}>
         <h1 className='uppercase cursor-pointer hover:scale-110'>Shop</h1>
       </Link>

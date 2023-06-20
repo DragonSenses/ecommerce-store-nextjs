@@ -1842,3 +1842,30 @@ export default function Modal() {
   ))
 }
 ```
+
+In Header let's add the Modal state value.
+
+```js
+import Modal from './Modal';
+
+export default function Header() {
+  const cartItems = useCart(state => state.cart);
+  const openModal = useCart(state => state.openModal);
+
+  return (
+    <header className='flex items-center justify-between sticky
+    top-0 p-6 bg-slate-200 border-b border-solid border-blue-900
+    shadow-md z-50 text-2xl sm:text-3xl md:text-4xl sm:p-8'>
+
+      {openModal && (
+        <Modal />
+      )}
+```
+
+In the store, set the state variable of `openModal` to `true` temporarily to see it rendered in the Elements. 
+
+```js
+    openModal: true,
+```
+
+Press developer tools, inside the body the last thing before scripts should be the `portal` div with `Modal` rendered out.
