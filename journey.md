@@ -1869,3 +1869,45 @@ In the store, set the state variable of `openModal` to `true` temporarily to see
 ```
 
 Press developer tools, inside the body the last thing before scripts should be the `portal` div with `Modal` rendered out.
+
+Right now it should be rendered at the bottom of the screen page. 
+
+Since it is rendered in relation to the body of the document, you can style it.
+
+```js
+export default function Modal() {
+  return ( createPortal(
+    <div className='fixed top-0 left-0 w-screen h-screen z-50'>
+      <div className="bg-transparent absolute inset-0"></div>
+      <div className="flex flex-col gap-4 p-4">
+        <div>
+          <h1>Cart</h1>
+        </div>
+      </div>
+    </div>,
+    document.getElementById('portal')
+  ))
+}
+```
+
+We want the modal to cover the entire page with a high z-index. 
+
+```js
+    <div className='fixed top-0 left-0 w-screen h-screen z-50'>
+```
+
+Then first `div` within will be a transparent one that occupies the entire parent container with `absolute` and `inset-0`. This will close the modal.
+
+```js
+      <div className="bg-transparent absolute inset-0"></div>
+```
+
+Next is the contents of the modal. It will be `flex-col`. It will contain the `Cart`.
+
+```js
+      <div className="flex flex-col gap-4 p-4">
+        <div>
+          <h1>Cart</h1>
+        </div>
+      </div>
+```
