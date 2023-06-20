@@ -55,7 +55,7 @@ export default function ProductPage(props) {
             <p className="md:text-base">${cost / 100}</p>
           </div>
           <p className="text-sm flex-1">{description}</p>
-          <button className='bg-slate-700 text-white hover:bg-slate-500
+          <button onClick={handleAddToCart} className='bg-slate-700 text-white hover:bg-slate-500
           cursor-pointer ml-auto px-4 py-2'>Add to Cart</button>
         </div>
       </div>
