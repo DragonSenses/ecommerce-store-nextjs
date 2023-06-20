@@ -1797,3 +1797,48 @@ Going to make the size a bit better on mobile. Also going to give the `div` cont
     group-hover:hover:text-slate-500"></i>
 </div>
 ```
+
+# Modal to display Cart
+
+Create a react functional component called `Modal.js` inside `/app`. It will work on the client-side.
+
+```js
+"use client"
+import React from 'react';
+
+export default function Modal() {
+  return (
+    <div>Modal</div>
+  )
+}
+```
+
+We are going to render this Modal to a different part of the DOM so we are going to be using [React Portal](https://react.dev/reference/react-dom/createPortal).
+
+In `layout.js`, right before the end of `body` tag, add a `div` with id of portal. This is where we will mount the modal.
+
+```js
+      // ...
+        <div id="portal"></div>
+      </body>
+    </html>
+  )
+}
+```
+
+Back in the `Modal`, import exactly this:
+
+```js
+import { createPortal } from 'react-dom';
+```
+
+Then render the `Modal` to different place in the DOM:
+
+```js
+export default function Modal() {
+  return ( createPortal(
+    <div>Modal</div>,
+    document.getElementById('portal')
+  ))
+}
+```
