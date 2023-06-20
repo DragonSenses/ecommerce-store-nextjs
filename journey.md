@@ -1778,3 +1778,22 @@ Adjust the text-size of the `p` within to small and tune it down to `h-5` and it
 ```
 
 Now revert the conditional from `true` to `cartItems.length > 0`. Now the numbers icon will conditionally render when items are added to the cart.
+
+### Responsive cart icon and group hover
+
+Going to make the size a bit better on mobile. Also going to give the `div` container a group with the icon. Giving icon `group` means it will listen to the parent hover state, changing its opacity.
+
+```js
+<div className="relative cursor-pointer group grid place-items-center">
+  {cartItems.length > 0 && (
+    <div className="absolute aspect-square pointer-events-none h-5 sm:h-6
+      grid place-items-center
+      bg-blue-400 text-white rounded-full top-0 right-0
+      -translate-y-1/2 translate-x-1/2">
+      <p className='text-xs sm:text-sm'>{cartItems.length}</p>
+    </div>
+  )}
+  <i className="fa-solid fa-cart-shopping cursor-pointer
+    group-hover:hover:text-slate-500"></i>
+</div>
+```
