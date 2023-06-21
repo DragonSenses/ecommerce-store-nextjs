@@ -1963,3 +1963,28 @@ export default function Modal() {
     ))
 }
 ```
+
+## More ways to Open the Modal
+
+In Header, when we click the cart icon we expect to open the Cart Modal.
+
+We should set the `state` value of the `openModal` by using `setOpenModal` function as the onClick handler.
+
+```js
+
+export default function Header() {
+  const cartItems = useCart(state => state.cart);
+
+  const openModal = useCart(state => state.openModal);
+  const setOpenModal = useCart(state => state.setOpenModal);
+
+    return (
+      // ..
+
+      <div onClick = {setOpenModal} className="relative cursor-pointer group
+      grid place-items-center">
+        {cartItems.length > 0 && (
+
+      // ...
+```
+
