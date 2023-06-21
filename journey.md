@@ -1931,3 +1931,35 @@ Next is the contents of the modal. It will be `flex-col`. It will contain the `C
 
 - Added an `icon` with x mark
 - Added another `div` under icon which is just a line to comparmentalize
+
+## Closing the Cart Modal
+
+Remember that the 2nd `div`:
+
+```js
+<div className="bg-transparent absolute inset-0"></div>
+```
+
+Occupies invisibily everywhere else that isn't the Cart modal. We are going to listen to any events that click on this background. So if user clicks outside of the Cart modal, it closes it.
+
+In other words, this is the backdrop. 
+
+The other case to close the Cart Modal is when user clicks on the icon.
+
+So let's add the `closeModal` function from the state, and apply the `onClick` handler to both of these elements.
+
+```js
+import useCart from './(store)/store';
+
+export default function Modal() {
+  const closeModal = useCart(state => state.setOpenModal);
+
+  return ( createPortal(
+    // ...
+      <div onClick={closeModal} className="bg-transparent absolute inset-0"></div>
+    // ...
+          <i onClick={closeModal} className="fa-solid fa-xmark"></i>
+    // ...
+    ))
+}
+```
