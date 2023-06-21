@@ -1988,3 +1988,23 @@ export default function Header() {
       // ...
 ```
 
+## Display Cart Items inside Cart Modal
+
+First lets grab the cartItems from the state
+
+```js
+  const cartItems = useCart(state => state.cart);
+```
+
+Then create a `div` to contain the `cartItems`. Conditionally render them. If there are no items, then some message. If there are items, then map out each cartItem inside a React fragment. Rough draft:
+
+```js
+        <div>
+          {cartItems.length === 0 ? (
+            <p>There is nothing in your cart {":("}</p>
+          ) : (
+            <>
+            </>
+          )}
+        </div>
+```
