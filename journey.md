@@ -2085,3 +2085,10 @@ Style the mapping a bit more while rendering extra information of the cart item:
   })}
 </>
 ```
+
+Give `overflow-scroll` and `flex-1` to `div` container for cartItems:
+
+``js
+<div className='p-4 flex flex-col flex-1 gap-4 overflow-scroll'>
+  {cartItems.length === 0 ? (
+```
