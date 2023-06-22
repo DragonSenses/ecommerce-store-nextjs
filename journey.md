@@ -2072,8 +2072,8 @@ Style the mapping a bit more while rendering extra information of the cart item:
 <>
   {cartItems.map((cartItem, itemIndex) => {
     return (
-      <div key={itemIndex} className='flex flex-col gap-2 p-2 
-      border-l border-solidborder-slate-700'>
+      <div key={itemIndex} className='flex flex-col gap-2 px-2 
+      border-l border-solid border-slate-700'>
         <div className="flex items-center justify-between">
 
           <h2>{cartItem.name}</h2>
