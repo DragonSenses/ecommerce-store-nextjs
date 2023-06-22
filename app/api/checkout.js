@@ -1,3 +1,5 @@
-export async function POST(request) {
-  return new Response('Hello!');
+export async function POST(req, res) {
+  const body = JSON.parse(req.body);
+
+  return new res.sendStatus(405);
 }
