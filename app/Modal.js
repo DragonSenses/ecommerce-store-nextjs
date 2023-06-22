@@ -5,7 +5,7 @@ import useCart from './(store)/store';
 
 export default function Modal() {
   const closeModal = useCart(state => state.setOpenModal);
-
+  const cartItems = useCart(state => state.cart);
 
   return ( createPortal(
     <div className='fixed top-0 left-0 w-screen h-screen z-50'>
@@ -17,6 +17,14 @@ export default function Modal() {
           <i onClick={closeModal} className="fa-solid fa-xmark cursor-pointer hover:opacity-60"></i>
           <div className="absolute bottom-0 left-1/2-translate-x-1/2 h-[1px] w-2/3
           bg-slate-300"></div>
+        </div>
+        <div>
+          {cartItems.length === 0 ? (
+            <p>There is nothing in your cart {":("}</p>
+          ) : (
+            <>
+            </>
+          )}
         </div>
       </div>
     </div>,
