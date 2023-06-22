@@ -35,6 +35,7 @@ export default function ProductPage(props) {
     const newItem = {
       price_id: price_id,
       quantity: 1,
+      name
     }
     addItemToCart({newItem});
   }

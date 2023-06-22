@@ -2024,3 +2024,20 @@ Map out all the cart items if length is not 0.
   </>
 )}
 ```
+
+Currently, the issue is that when we set it we are only setting the `price_id` and `quantity`. We also need to set the `name` as well. 
+
+So in `/app/(store)/page.js`, in the Product Page, add the name to the `newItem` object within the handler:
+
+```js
+  function handleAddToCart() {
+    const newItem = {
+      price_id: price_id,
+      quantity: 1,
+      name
+    }
+    addItemToCart({newItem});
+  }
+```
+
+So now we can access the name.
