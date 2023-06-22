@@ -2103,3 +2103,21 @@ uppercase grid place-items-center hover:opacity-60 cursor-pointer">
   Checkout
 </div>
 ```
+
+# Creating API routes in Nextjs
+
+Nextjs serves up a Nodejs back-end.
+
+[API Routes](https://nextjs.org/docs/pages/building-your-application/routing/api-routes).
+
+Create folder `api` under `/app`. Inside we create the back-end route that handles the `checkout`.
+
+The file will be named `checkout.js`.
+
+Inside we can make a simple route:
+
+```js
+export async function GET(request) {
+  return new Response('Hello!');
+}
+```
