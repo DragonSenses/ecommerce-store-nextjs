@@ -2051,3 +2051,37 @@ So now we can access the name. Now we can render out the name in the Cart Modal:
   })}
 </>
 ```
+
+Let's also add the `cost` so we can calculate the total cost.
+
+```js
+  function handleAddToCart() {
+    const newItem = {
+      price_id: price_id,
+      quantity: 1,
+      name,
+      cost
+    }
+    addItemToCart({newItem});
+  }
+```
+
+Style the mapping a bit more while rendering extra information of the cart item:
+
+```js
+<>
+  {cartItems.map((cartItem, itemIndex) => {
+    return (
+      <div key={itemIndex} className='flex flex-col gap-2 p-2 
+      border-l border-solidborder-slate-700'>
+        <div className="flex items-center justify-between">
+
+          <h2>{cartItem.name}</h2>
+          <p>${cartItem.cost / 100}</p>
+        </div>
+        <p>Quantity: 1</p>
+      </div>
+    )
+  })}
+</>
+```
