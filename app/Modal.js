@@ -18,7 +18,7 @@ export default function Modal() {
           <div className="absolute bottom-0 left-1/2-translate-x-1/2 h-[1px] w-2/3
           bg-slate-300"></div>
         </div>
-        <div className='p-4 flex flex-col gap-4'>
+        <div className='p-4 flex flex-col flex-1 gap-4 overflow-scroll'>
           {cartItems.length === 0 ? (
             <p>There is nothing in your cart {":("}</p>
           ) : (
