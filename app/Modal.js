@@ -23,6 +23,11 @@ export default function Modal() {
             <p>There is nothing in your cart {":("}</p>
           ) : (
             <>
+              {cartItems.map((cartItem, itemIndex) => {
+                return (
+                  <div key={itemIndex}>{cartItem}</div>
+                )
+              })}
             </>
           )}
         </div>
