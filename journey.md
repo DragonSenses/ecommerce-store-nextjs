@@ -2018,7 +2018,7 @@ Map out all the cart items if length is not 0.
   <>
     {cartItems.map((cartItem, itemIndex) => {
       return (
-        <div key={itemIndex}>{cartIndex}</div>
+        <div key={itemIndex}>{cartItem}</div>
       )
     })}
   </>
