@@ -25,7 +25,7 @@ export default function Modal() {
             <>
               {cartItems.map((cartItem, itemIndex) => {
                 return (
-                  <div key={itemIndex}>{cartItem}</div>
+                  <div key={itemIndex}>{cartItem.name}</div>
                 )
               })}
             </>
