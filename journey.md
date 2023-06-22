@@ -2040,4 +2040,14 @@ So in `/app/(store)/page.js`, in the Product Page, add the name to the `newItem`
   }
 ```
 
-So now we can access the name.
+So now we can access the name. Now we can render out the name in the Cart Modal:
+
+```js
+<>
+  {cartItems.map((cartItem, itemIndex) => {
+    return (
+      <div key={itemIndex}>{cartItem.name}</div>
+    )
+  })}
+</>
+```
