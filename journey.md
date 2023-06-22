@@ -2121,3 +2121,13 @@ export async function GET(request) {
   return new Response('Hello!');
 }
 ```
+
+Let's change it to a `POST` route, and access the body of the request. Lastly, we should send back a status code of some sort:
+
+```js
+export async function POST(req, res) {
+  const body = JSON.parse(req.body);
+
+  return new res.sendStatus(405);
+}
+```
