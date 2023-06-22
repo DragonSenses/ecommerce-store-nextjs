@@ -2092,3 +2092,14 @@ Give `overflow-scroll` and `flex-1` to `div` container for cartItems:
 <div className='p-4 flex flex-col flex-1 gap-4 overflow-scroll'>
   {cartItems.length === 0 ? (
 ```
+
+## Checkout button for Modal
+
+Let's add the checkout button at the end:
+
+```js
+<div className="border border-solid border-slate-700 text-xl m-4 p-6 
+uppercase grid place-items-center hover:opacity-60 cursor-pointer">
+  Checkout
+</div>
+```
