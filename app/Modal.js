@@ -39,6 +39,10 @@ export default function Modal() {
             </>
           )}
         </div>
+        <div className="border border-solid border-slate-700 text-xl m-4 p-6 
+        uppercase grid place-items-center hover:opacity-60 cursor-pointer">
+          Checkout
+        </div>
       </div>
     </div>,
     document.getElementById('portal')
