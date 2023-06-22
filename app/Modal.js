@@ -18,14 +18,22 @@ export default function Modal() {
           <div className="absolute bottom-0 left-1/2-translate-x-1/2 h-[1px] w-2/3
           bg-slate-300"></div>
         </div>
-        <div>
+        <div className='p-4 flex flex-col gap-4'>
           {cartItems.length === 0 ? (
             <p>There is nothing in your cart {":("}</p>
           ) : (
             <>
               {cartItems.map((cartItem, itemIndex) => {
                 return (
-                  <div key={itemIndex}>{cartItem.name}</div>
+                  <div key={itemIndex} className='flex flex-col gap-2 p-2 
+                  border-l border-solidborder-slate-700'>
+                    <div className="flex items-center justify-between">
+
+                      <h2>{cartItem.name}</h2>
+                      <p>${cartItem.cost / 100}</p>
+                    </div>
+                    <p>Quantity: 1</p>
+                  </div>
                 )
               })}
             </>
