@@ -2350,3 +2350,29 @@ Otherwise, in a `try..catch`, initialize `stripe` and create a checkout [session
 
 At the end of the try, respond with a status of `201` along with the session parsed in json.
 
+```js
+  if(body.lineItems.length === 0){
+    return new res.sendStatus(405);
+  }
+
+  try{
+    // Initialize Stripe
+    const stripe = new Stripe(process.env.STRIPE_SECRET ?? '', {
+      apiVersion: '2020-08-27'
+    });
+
+    const session = await stripe.checkout.sessions.create({
+      
+    })
+
+    return res.status(201).json({ session });
+
+  } catch(err) {
+    console.log("error on checkout");
+  }
+```
+
+Filling out the `session`:
+
+```js
+```
