@@ -1379,6 +1379,22 @@ const useCart = create(
 )
 ```
 
+# Fixing Issue for Nextjs Error 4094 code
+
+When running `npm run dev`, this error pops out:
+
+```sh
+[Error: UNKNOWN: unknown error, readlink 'C:\Users\...\GitHub\ecommerce-store-nextjs\.next\server\app-paths-manifest.json'] {
+  type: 'Error',
+  errno: -4094,
+  code: 'UNKNOWN',
+  syscall: 'readlink',
+  path: 'C:\\Users\\...\\GitHub\\ecommerce-store-nextjs\\.next\\server\\app-paths-manifest.json'
+}
+```
+
+
+
 # **(Technical Debt)** Downside: if we refresh the `ProductPage` we lose access to the store
 
 If we refresh the page with `[F5]`, right after we clicked a `ProductCard` in the home-page and get re-routed, we lose access to the information of that product in the store.
@@ -1494,7 +1510,9 @@ export default async function Home() {
 }
 ```
 
-## **Solution to Technical Debt!** - Handle the URL context instead of the homepage
+Issue is you can't access these server-side functions on client components as it loses the context to things such as `.env` variables to be able to run the fetch calls to APIs. So this doesn't work `:(`
+
+## Attempt 3 - Using Global Context with NextJS to store the products list
 
 A crucial part of web applications is that when you hit refresh - you generally get back to the same state.
 
@@ -1503,6 +1521,8 @@ Instead of routing to the homepage, we should handle the URL context. This would
 The best solution would be to refetch the product on page load on the sub page route, the state is there.
 
 But how do we access that state?
+
+Check this out [Using react context with NextJS13](https://www.js-craft.io/blog/using-react-context-nextjs-13/).
 
 **Let's use [React Context](https://react.dev/reference/react/useContext) and create a `priceList` as the state variable**
 
@@ -1623,9 +1643,56 @@ Whether its the main page (home page) or sub pages (product pages), they'll have
 Since they are using hooks, we will need to mark them as client components (via "use client" directive).
 
 ```js
+"use client"
+import { getStripeProducts } from '@/lib/getStripeProducts';
+import { useAppContext } from './context/AppContext';
+
+export default async function Home() {
+  const products = await getStripeProducts();
+  const { priceList, setPriceList } = useAppContext();
+
+  setPriceList(products);
 
 ```
 
+There is a problem -> Home needs to be a server-side component because of its call to Stripe API. This has access to the `.env` variables such as the Stripe API key that we need to access the information. So this doesn't work. 
+
+We can however, try passing the products as a prop instead.
+
+Or store the products in the object store of Zustand.
+
+## Storing `products` in Object Store with Zustand
+
+In `store.js`, create a new state called `productList` which will have an initial state of an empty array. 
+
+```js
+const useCart = create( (set, get) => ({
+    productList: [],
+}
+```
+
+Then update the state using the set method provided by the store. `set` takes a functio nthe receives the current state as an argument and returns the new state:
+
+```js
+const useCart = create(
+  (set, get) => ({
+
+    addToProductList: (params) => {
+      const { newProduct } = params;
+      set((state) => {
+        const newProductList = [...state.productList, newProduct];
+        return {
+          ...state,
+          productList: newProductList
+        }
+      })
+    },
+  // ...
+```
+
+It's good practice to scope these functions in your store so that they can be accessed globally.
+
+## **Solution to Technical Debt!** - Handle the URL context instead of the homepage
 
 ---
 
