@@ -1,8 +1,10 @@
+import { retrieveStripeProduct } from '@/lib/retrieveStripeProduct';
 import ProductCard from './ProductCard';
 import { getStripeProducts } from '@/lib/getStripeProducts';
 
 export default async function Home() {
   const products = await getStripeProducts();
+  const p = await retrieveStripeProduct("price_1NHdRIJ4MEfvtz7t6WZZCDKS");
 
   return (
     <main className="p-4 flex flex-col">
