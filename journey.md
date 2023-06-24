@@ -2341,3 +2341,12 @@ export async function POST(req, res) {
   return new res.sendStatus(405);
 }
 ```
+
+Here is what we do, we will have the `body` store a property called `lineItems`.
+
+We check if `lineItems` length is 0, then send a status of [HTTP 405 - Method Not Allowed](https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/405).
+
+Otherwise, in a `try..catch`, initialize `stripe` and create a checkout [session](https://stripe.com/docs/api/checkout/sessions) to create a payment system. This will take in an object that has props for `success_url`, `cancel_url`, `line_items`, and `mode`.
+
+At the end of the try, respond with a status of `201` along with the session parsed in json.
+
