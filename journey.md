@@ -1694,7 +1694,9 @@ const useCart = create(
 
 It's good practice to scope these functions in your store so that they can be accessed globally.
 
-## **Solution to Technical Debt!** - Handle the URL context instead of the homepage
+Issue, we are running a client side object store to store things that are fetched server-side, but we can't make `Home` component server-side because thats where we fetch prices!
+
+## **Solution to Technical Debt!** - Handle the URL context instead of the re-routing to homepage
 
 ---
 
