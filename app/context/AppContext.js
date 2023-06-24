@@ -1,7 +1,17 @@
-"use client"
+'use client'
 
-import { createContext } from "react";
+import { createContext, useContext, useState } from "react";
 
-const AppContext = createContext();
+const AppContext = createContext({});
 
-export default AppContext;
+export const AppContextProvider = ({ children }) => {
+  const [priceList, setPriceList] = useState(null);
+
+  return (
+    <AppContext.Provider value = {{ priceList, setPriceList }}>
+      {children}
+    </AppContext.Provider>
+  )
+};
+
+export const useAppContext = () => useContext(AppContext);
