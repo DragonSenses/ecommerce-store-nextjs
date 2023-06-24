@@ -150,6 +150,14 @@ Use official [Tailwind CSS IntelliSenses extension](https://marketplace.visualst
 
 [Add TailwindCSS to VS Code Settings under `files.associations](https://marketplace.visualstudio.com/items?itemName=bradlc.vscode-tailwindcss#recommended-vs-code-settings).
 
+## To Update NextJS
+
+During development, NextJS version can be out-of-date. [NextJS version staleness](https://nextjs.org/docs/messages/version-staleness) has more on this, so run this command to update it to a stable release:
+
+```sh
+npm i next@latest
+```
+
 ## Start the Build Process
 
 ```sh
