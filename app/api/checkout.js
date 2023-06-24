@@ -11,7 +11,15 @@ export async function POST(req, res) {
       apiVersion: '2020-08-27'
     });
 
-    
+    const session = await stripe.checkout.sessions.create({
+      success_url: 'http://localhost:3000/success',
+      cancel_url: 'http://localhost:3000/cancel',
+      line_items: body.lineItems,
+      mode: 'payment'
+    })
+
+    return res.status(201).json({ session });
+
   } catch(err) {
     console.log("error on checkout");
   }

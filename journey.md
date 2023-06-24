@@ -2375,4 +2375,10 @@ At the end of the try, respond with a status of `201` along with the session par
 Filling out the `session`:
 
 ```js
+const session = await stripe.checkout.sessions.create({
+  success_url: 'http://localhost:3000/success',
+  cancel_url: 'http://localhost:3000/cancel',
+  line_items: body.lineItems,
+  mode: 'payment'
+})
 ```
