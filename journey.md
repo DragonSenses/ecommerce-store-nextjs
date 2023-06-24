@@ -1393,7 +1393,9 @@ When running `npm run dev`, this error pops out:
 }
 ```
 
+This happens when you update Nextjs with `npm i next@latest`, and next.js is trying to use parts of a previous build. 
 
+*Solution:* delete to `.next` folder. Then run `npm run dev` again to force nextjs to rebuild everything again. [Stackoverflow response](https://stackoverflow.com/questions/71443635/what-causes-the-npm-error-errno-4094-code-unknown-syscall-readlink)
 
 # **(Technical Debt)** Downside: if we refresh the `ProductPage` we lose access to the store
 
