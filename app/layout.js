@@ -4,7 +4,7 @@ import Link from 'next/link';
 import './globals.css';
 import { Inter } from 'next/font/google';
 import Header from './Header';
-import AppContextProvider from './context/AppContext';
+import { AppContextProvider } from './context/AppContext';
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -26,7 +26,9 @@ export default function RootLayout({ children }) {
         <Header />
 
         <div className="flex-1">
-          {children}
+          <AppContextProvider>
+            {children}
+          </AppContextProvider>
         </div>
 
         <footer className='flex items-center flex-wrap justify-center
