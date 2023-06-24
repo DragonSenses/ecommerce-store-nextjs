@@ -1,26 +1,31 @@
 "use client"
 
 import useCart from "../(store)/store";
+// import { getStripeProducts } from '@/lib/getStripeProducts';
 
 export default function ProductPage(props) {
   const { searchParams } = props;
   const { price_id } = searchParams;
 
-  const product = useCart(state => state.product);
+  let product = useCart(state => state.product);
   const addItemToCart = useCart(state => state.addItemToCart);
 
   // log the variables
-  console.log('searchParams are:')
-  console.log(searchParams);
-  console.log('price_id is:')
-  console.log(price_id);
-  console.log('product is:')
-  console.log(product);
+  // console.log(props);
+  // console.log('searchParams are:')
+  // console.log(searchParams);
+  // console.log('price_id is:')
+  // console.log(price_id);
+  // console.log('product is:')
+  // console.log(product);
 
   if(!product?.name){
+    console.log("does searchParams exist?");
+    console.log(searchParams);
     window.location.href = '/';
+    // const products = await getStripeProducts();
+    // product = products.find(product => product.id == price_id);
   }
-
   
   // Destructure the information we need from the product
   // Used to dynamically render the product page
