@@ -1486,7 +1486,138 @@ export default async function Home() {
 }
 ```
 
-## Fixing the downside here
+## **Solution to Technical Debt!** - Handle the URL context instead of the homepage
+
+A crucial part of web applications is that when you hit refresh - you generally get back to the same state.
+
+Instead of routing to the homepage, we should handle the URL context. This would allow users to share URLs to products.
+
+The best solution would be to refetch the product on page load on the sub page route, the state is there.
+
+But how do we access that state?
+
+**Let's use [React Context](https://react.dev/reference/react/useContext) and create a `priceList` as the state variable**
+
+```js
+"use client"
+
+import { createContext } from "react";
+
+const AppContext = createContext();
+
+export default AppContext;
+```
+
+Now try to import to and wrap layout with it:
+
+```js
+import { useState, createContext } from 'react';
+import AppContext from './context/AppContext';
+
+// ...
+
+export default function RootLayout({ children }) {
+  return (
+    <AppContext.Provider>
+```
+
+### Issue: `createContext` only works in a Client Component but none of its parents are marked
+
+```sh
+You're importing a component that needs createContext. It only works in a Client Component but none of its parents are marked with "use client", so they're Server Components by default.
+```
+
+### Refactor Context to Nextjs 13
+
+So a bit of changes. First update `AppContext`, this creates the React Context Store.
+
+Note the `'use client'` directive that marks the context component as a client one.
+
+```js
+'use client'
+
+import { createContext, useContext, useState } from "react";
+
+const AppContext = createContext({});
+
+export const AppContextProvider = ({ children }) => {
+  const [priceList, setPriceList] = useState(null);
+
+  return (
+    <AppContext.Provider value = {{ priceList, setPriceList }}>
+      {children}
+    </AppContext.Provider>
+  )
+};
+
+export const useAppContext = () => useContext(AppContext);
+```
+
+### Passing React Context to NextJS layouts
+
+In NextJS we have a `RootLayout` component which is the *main layout page*. This is the `layout.js` file under `/app` directory. Let's import our provider and wrap the `{children}`.
+
+In `layout.js`,
+
+```js
+import { AppContextProvider } from './context/AppContext';
+
+export default function RootLayout({ children }) {
+  return (
+    <html lang="en">
+      // ...
+
+        <div className="flex-1">
+          <AppContextProvider>
+            {children}
+          </AppContextProvider>
+        </div>
+      
+      // ...
+```
+
+**IMPORTANT:** Since we exported AppContext without `default` keyword, this also means that the import is called a [**Named Export**](https://javascript.info/import-export#export-default), so it must be wrapped in `{}` curly braces otherwise you get an error.
+
+You get `Syntax Error`, attempted import errors, even
+
+```sh
+Unhandled Runtime Error
+NotFoundError: Failed to execute 'removeChild' on 'Node': The node to be removed is not a child of this node.
+```
+
+So make sure you put *curly braces around a named export*.
+
+Now look into how the Context passes things down:
+
+```js
+<div className="flex-1">
+  <AppContextProvider>
+    {children}
+  </AppContextProvider>
+</div>
+```
+
+Note how this works because the `children` property form the layout is later used in the context provider:
+
+```js
+// In app/context/AppContext.js
+<AppContext.Provider value = {{ priceList, setPriceList }}>
+  {children}
+</AppContext.Provider>
+```
+
+### Using React Context within NextJS 13 pages
+
+Now that the context provider setup is done, final step is to read and update the context values.
+
+Whether its the main page (home page) or sub pages (product pages), they'll have similar code by reading the context value and updating it.
+
+Since they are using hooks, we will need to mark them as client components (via "use client" directive).
+
+```js
+
+```
+
 
 ---
 
