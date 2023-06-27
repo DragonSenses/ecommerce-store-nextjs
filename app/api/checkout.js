@@ -22,5 +22,7 @@ export async function POST(req, res) {
 
   } catch(err) {
     console.log("error on checkout");
+    console.log(err);
+    res.sendStatus(500);
   }
 }
