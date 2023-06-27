@@ -2418,3 +2418,12 @@ This will map out each cartItem into `lineItems` containing the `price` and `qua
 Then we `fetch` at the url `/api/checkout` with a `POST` method, meanwhile setting the body to that of `lineItems` object. This will be stored in `res`.
 
 Then `data` variable will be the result of the response or `res`.
+
+Now also import `useRouter` from `next/navigation`
+```js
+import { useRouter } from 'next/navigation';
+
+export default function Modal() {
+  // ...
+  const router = useRouter();
+```

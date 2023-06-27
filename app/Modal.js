@@ -2,10 +2,12 @@
 import React from 'react';
 import { createPortal } from 'react-dom';
 import useCart from './(store)/store';
+import { useRouter } from 'next/navigation';
 
 export default function Modal() {
   const closeModal = useCart(state => state.setOpenModal);
   const cartItems = useCart(state => state.cart);
+  const router = useRouter();
 
   async function checkout(){
     const lineItems = cartItems.map(cartItem => {
