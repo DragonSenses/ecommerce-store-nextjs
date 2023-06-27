@@ -2382,3 +2382,13 @@ const session = await stripe.checkout.sessions.create({
   mode: 'payment'
 })
 ```
+
+For the `catch`, log the error and send a generic server error as response:
+
+```js
+catch(err) {
+    console.log("error on checkout");
+    console.log(err);
+    res.sendStatus(500);
+  }
+```
