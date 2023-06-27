@@ -2392,3 +2392,29 @@ catch(err) {
     res.sendStatus(500);
   }
 ```
+
+## Construct checkout in Modal
+
+Create an `async` function named `checkout` in `Modal.js`
+
+```js
+  async function checkout(){
+    const lineItems = cartItems.map(cartItem => {
+      return {
+        price: cartItem.price_id,
+        quantity: 1
+      }
+    })
+    const res = await fetch('/api/checkout', {
+      method: 'POST',
+      body: JSON.stringify({ lineItems })
+    })
+    const data = await res.json();
+  }
+```
+
+This will map out each cartItem into `lineItems` containing the `price` and `quantity`. 
+
+Then we `fetch` at the url `/api/checkout` with a `POST` method, meanwhile setting the body to that of `lineItems` object. This will be stored in `res`.
+
+Then `data` variable will be the result of the response or `res`.
