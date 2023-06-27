@@ -2471,3 +2471,14 @@ Let's look at the problem in Chrome dev tools by checking the **Network** tab, h
 ### Solving the Issue
 
 - Going to try to solve it
+- In `checkout.js` renamed `POST` method to `handler`. Instead, check if the request's method is not `POST` and return / send a status of `405` in this case.
+
+```js
+import Stripe from "stripe";
+
+export async function handler(req, res) {
+
+  if(req.method !== 'POST') { 
+    return res.sendStatus(405);
+  }
+```
