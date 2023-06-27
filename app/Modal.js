@@ -21,6 +21,7 @@ export default function Modal() {
       body: JSON.stringify({ lineItems })
     })
     const data = await res.json();
+    router.push(data.session.url);
   }
 
   return ( createPortal(
