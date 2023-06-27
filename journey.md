@@ -2455,3 +2455,19 @@ text-xl m-4 p-6 uppercase grid place-items-center hover:opacity-60 cursor-pointe
   Checkout
 </div>
 ```
+
+## Issue: POST 404 not found
+
+In Chrome dev tools, we get the following errors:
+
+```sh
+Modal.js:19     POST http://localhost:3000/api/checkout 404 (Not Found)
+
+VM371:1 Uncaught (in promise) SyntaxError: Unexpected token '<', "<!DOCTYPE "... is not valid JSON
+```
+
+Let's look at the problem in Chrome dev tools by checking the **Network** tab, hover over the **Headers** and see that under **General** the Status Code really is `404`.
+
+### Solving the Issue
+
+- Going to try to solve it
