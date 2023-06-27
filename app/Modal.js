@@ -7,6 +7,20 @@ export default function Modal() {
   const closeModal = useCart(state => state.setOpenModal);
   const cartItems = useCart(state => state.cart);
 
+  async function checkout(){
+    const lineItems = cartItems.map(cartItem => {
+      return {
+        price: cartItem.price_id,
+        quantity: 1
+      }
+    })
+    const res = await fetch('/api/checkout', {
+      method: 'POST',
+      body: JSON.stringify({ lineItems })
+    })
+    const data = await res.json();
+  }
+
   return ( createPortal(
     <div className='fixed top-0 left-0 w-screen h-screen z-50'>
       <div onClick={closeModal} className="bg-transparent absolute inset-0"></div>
