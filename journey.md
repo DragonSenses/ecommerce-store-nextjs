@@ -2417,7 +2417,7 @@ This will map out each cartItem into `lineItems` containing the `price` and `qua
 
 Then we `fetch` at the url `/api/checkout` with a `POST` method, meanwhile setting the body to that of `lineItems` object. This will be stored in `res`.
 
-Then `data` variable will be the result of the response or `res`.
+Then `data` variable will be the result of the response or `res`. The response is the Stripe `session` we create from `/api/checkout.js`.
 
 Now also import `useRouter` from `next/navigation`
 ```js
@@ -2426,4 +2426,32 @@ import { useRouter } from 'next/navigation';
 export default function Modal() {
   // ...
   const router = useRouter();
+```
+
+Now push the **success url** using the router.
+
+```js
+  async function checkout(){
+    const lineItems = cartItems.map(cartItem => {
+      return {
+        price: cartItem.price_id,
+        quantity: 1
+      }
+    })
+    const res = await fetch('/api/checkout', {
+      method: 'POST',
+      body: JSON.stringify({ lineItems })
+    })
+    const data = await res.json();
+    router.push(data.session.url);
+  }
+```
+
+Then assign the `checkout` method as `onClick` of the `Checkout` div.
+
+```js
+<div onClick={checkout} className="border border-solid border-slate-700
+text-xl m-4 p-6 uppercase grid place-items-center hover:opacity-60 cursor-pointer">
+  Checkout
+</div>
 ```
