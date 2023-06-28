@@ -1,4 +1,11 @@
-export async function POST(req, res) {
+import Stripe from "stripe";
+
+export async function handler(req, res) {
+
+  if(req.method !== 'POST') { 
+    return res.sendStatus(405);
+  }
+
   const body = JSON.parse(req.body);
 
   if(body.lineItems.length === 0){
