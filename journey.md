@@ -2550,3 +2550,8 @@ In Chrome Dev tools, look at the Payload we have the `lineItems` object with qua
 The `price` property doesn't register and doesn't add itself to the `payload`.
 
 Let's further debug the issue.
+
+```js
+console.log('CART ITEM: ', cartItem);
+```
+
