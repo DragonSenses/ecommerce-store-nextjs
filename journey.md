@@ -2555,3 +2555,33 @@ Let's further debug the issue.
 console.log('CART ITEM: ', cartItem);
 ```
 
+Console:
+
+```sh
+CART ITEM:  
+{price_id: 'price_1NHdRIJ4MEfvtz7t6WZZCDKS', quantity: 1, name: 'Premium Pineapple', cost: 100000}
+cost
+: 
+100000
+name
+: 
+"Premium Pineapple"
+price_id
+: 
+"price_1NHdRIJ4MEfvtz7t6WZZCDKS"
+quantity
+: 
+1
+[[Prototype]]
+: 
+Object
+```
+
+Errors:
+
+```sh
+0: {price_id: 'price_1NHdRIJ4MEfvtz7t6WZZCDKS', quantity: 1, name: 'Premium Pineapple', cost: 100000}length: 1[[Prototype]]: Array(0)
+Modal.js:22     POST http://localhost:3000/api/checkout 500 (Internal Server Error)
+
+VM472:1 Uncaught (in promise) SyntaxError: Unexpected end of JSON input
+```
