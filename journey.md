@@ -2517,7 +2517,9 @@ export async function handler(req, res) {
 
 - Move file into a folder named `checkout` and rename the file to `route.js`
 
-We also have to rever the changes we made from the first solution, renaming the method back to `POST` and removing the check to handle the POST method in API route:
+The project directory is `/app/api/checkout/route.js`, where the code inside `route.js` is from `checkout.js`.
+
+We also have to revert the changes we made from the first solution, renaming the method back to `POST` and removing the check to handle the POST method in API route:
 
 ```js
 import Stripe from "stripe";
@@ -2529,3 +2531,22 @@ export async function POST(req, res) {
   // }
 ```
 
+#### Issue: `500 Internal Server error` in the network
+
+That's some progress, it seems we also get a `SyntaxError: Unexpected token ... is not a valid JSON`. This means its a JSON issue. We can see this in the Terminal of the back-end because it is a `500` error.
+
+In Chrome Dev tools, look at the Payload we have the `lineItems` object with quantity: 1 but no `lineItems` inside of that. This means that in `Modal`:
+
+```js
+  async function checkout(){
+    const lineItems = cartItems.map(cartItem => {
+      return {
+        price: cartItem.price_id,
+        quantity: 1
+      }
+    })
+```
+
+The `price` property doesn't register and doesn't add itself to the `payload`.
+
+Let's further debug the issue.
