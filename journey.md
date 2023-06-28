@@ -36,6 +36,8 @@ To create a new `Next.js` project, run in the terminal:
 npx create-next-app
 ```
 
+- **Important:** when referencing the documentation, make sure to have `App Router` rather than `Pages Router` on the top left drop down menu of the [documentation](https://nextjs.org/docs).
+
 # Project Introduction
 
 A full-stack e-commerce application using:
@@ -2505,5 +2507,25 @@ export async function handler(req, res) {
   if(req.method !== 'POST') { 
     return res.sendStatus(405);
   }
+```
+
+- Didn't work, still 404
+
+### Solution 2: Instead of `API Routes`, use `Route Handlers`
+
+[Route Handlers](https://nextjs.org/docs/app/building-your-application/routing/router-handlers) this is a feature of app router, instead of API routes we use `Route Handlers`.
+
+- Move file into a folder named `checkout` and rename the file to `route.js`
+
+We also have to rever the changes we made from the first solution, renaming the method back to `POST` and removing the check to handle the POST method in API route:
+
+```js
+import Stripe from "stripe";
+
+export async function POST(req, res) {
+
+  // if(req.method !== 'POST') { 
+  //   return res.sendStatus(405);
+  // }
 ```
 
