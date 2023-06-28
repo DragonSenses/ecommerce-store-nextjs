@@ -2585,3 +2585,73 @@ Modal.js:22     POST http://localhost:3000/api/checkout 500 (Internal Server Err
 
 VM472:1 Uncaught (in promise) SyntaxError: Unexpected end of JSON input
 ```
+
+Under Network Tab > Request Payload
+
+```json
+{
+    "lineItems": [
+        {
+            "price": "price_1NHdRIJ4MEfvtz7t6WZZCDKS",
+            "quantity": 1
+        }
+    ]
+}
+```
+
+It may be an issue of parsing the `body`, so log statement in `route.js`
+
+```js
+export async function POST(req, res) {
+
+  console.log(req.body);
+
+  // if(req.method !== 'POST') { 
+  //   return res.sendStatus(405);
+  // }
+
+  const body = JSON.parse(req.body);
+```
+
+Now in terminal:
+```sh
+- event compiled successfully in 221 ms (558 modules)
+ReadableStream { locked: false, state: 'readable', supportsBYOB: false }
+- error SyntaxError: Unexpected token o in JSON at position 1
+```
+
+It is a `ReadableStream`.
+
+- In `Modal` for `checkout()`, set the `headers` for `Content-Type`:
+
+```js
+    const res = await fetch('/api/checkout', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({ lineItems })
+    })
+```
+
+- Change `body`, in `route.js`
+
+From:
+```js
+  const body = JSON.parse(req.body);
+```
+
+To this:
+
+```js
+export async function POST(req, res) {
+
+  console.log(req.body);
+
+  const body = await req.json();
+```
+
+This will give us the proper body of the document.
+
+#### New Issue: `res.sendStatus` is not a function
+
