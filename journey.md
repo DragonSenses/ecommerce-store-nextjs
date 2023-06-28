@@ -2471,6 +2471,30 @@ Let's look at the problem in Chrome dev tools by checking the **Network** tab, h
 ### Solving the Issue
 
 - Going to try to solve it
+
+Using NextJS docs on [API Routes](https://nextjs.org/docs/pages/building-your-application/routing/api-routes). The function is named `handler` in the example, where the following API route `pages/api/user.js` returns a `json` response with a status code of `200`:
+
+```js
+export default function handler(req, res) {
+  res.status(200).json({ name: 'John Doe' })
+}
+```
+
+> For an API route to work, you need to export a function as default (a.k.a request handler), which then receives the following parameters:
+- `req` and `res`
+
+- To handle different HTTP methods in an API route, you can use `req.method` in your request handler, like so:
+
+```js
+export default function handler(req, res) {
+  if (req.method === 'POST') {
+    // Process a POST request
+  } else {
+    // Handle any other HTTP method
+  }
+}
+```
+
 - In `checkout.js` renamed `POST` method to `handler`. Instead, check if the request's method is not `POST` and return / send a status of `405` in this case.
 
 ```js
@@ -2482,3 +2506,4 @@ export async function handler(req, res) {
     return res.sendStatus(405);
   }
 ```
+
