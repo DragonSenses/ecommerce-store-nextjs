@@ -2,6 +2,8 @@ import Stripe from "stripe";
 
 export async function POST(req, res) {
 
+  console.log(req.body);
+
   // if(req.method !== 'POST') { 
   //   return res.sendStatus(405);
   // }
