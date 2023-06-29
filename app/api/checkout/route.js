@@ -2,13 +2,6 @@ import { NextResponse } from "next/server";
 import Stripe from "stripe";
 
 export async function POST(req) {
-
-  console.log(req.body);
-
-  // if(req.method !== 'POST') { 
-  //   return res.sendStatus(405);
-  // }
-
   const body = await req.json();
 
   if(body.lineItems.length === 0){
