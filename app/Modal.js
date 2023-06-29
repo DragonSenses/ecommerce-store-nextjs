@@ -10,10 +10,7 @@ export default function Modal() {
   const router = useRouter();
 
   async function checkout(){
-
     const lineItems = cartItems.map(cartItem => {
-      console.log('CART ITEM: ', cartItem);
-
       return {
         price: cartItem.price_id,
         quantity: 1
