@@ -1,6 +1,7 @@
+import { NextResponse } from "next/server";
 import Stripe from "stripe";
 
-export async function POST(req, res) {
+export async function POST(req) {
 
   console.log(req.body);
 
@@ -11,7 +12,9 @@ export async function POST(req, res) {
   const body = await req.json();
 
   if(body.lineItems.length === 0){
-    return new res.sendStatus(405);
+    return new Response('Error', {
+      status: 405,
+    });
   }
 
   try{
@@ -27,11 +30,13 @@ export async function POST(req, res) {
       mode: 'payment'
     })
 
-    return res.status(201).json({ session });
+    return NextResponse.json({ session });
 
   } catch(err) {
     console.log("error on checkout");
     console.log(err);
-    res.sendStatus(500);
+    return new Response('Error', {
+      status: 500,
+    });
   }
 }
