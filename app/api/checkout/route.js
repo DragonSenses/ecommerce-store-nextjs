@@ -8,7 +8,7 @@ export async function POST(req, res) {
   //   return res.sendStatus(405);
   // }
 
-  const body = JSON.parse(req.body);
+  const body = await req.json();
 
   if(body.lineItems.length === 0){
     return new res.sendStatus(405);
