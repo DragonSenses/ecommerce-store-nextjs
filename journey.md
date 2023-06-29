@@ -1742,6 +1742,31 @@ export async function GET(request) {
 }
 ```
 
+What we want to do first is check if request's body does not contain any `lineItems`, then send back a `405` response. Then in the `try..catch` if some error occured then respond with a `500`.
+
+```js
+export async function GET(request) {
+  const body = await request.json();
+
+  if(body.lineItems.length === 0){
+    return new Response('Error', {
+      status: 405,
+    });
+  }
+
+  try{
+    // ...
+
+  } catch(err) {
+    console.log("-------- error on product page load --------");
+    console.log(err);
+    return new Response('Error', {
+      status: 500,
+    });
+  }
+}
+```
+
 # Creating the Product Page
 
 Assuming all things work and we are able to get the `product`, let's destructure out the information we need from the product.
