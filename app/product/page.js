@@ -8,14 +8,34 @@ export default function ProductPage(props) {
   let product = useCart(state => state.product);
   const addItemToCart = useCart(state => state.addItemToCart);
 
+  async function loadProduct(){
+
+    const lineItems = {
+      price_id: price_id,
+    }
+    console.log(`lineItems is: ${lineItems}`);
+
+    const res = await fetch('/api/price', {
+      method: 'GET',
+      body: JSON.stringify({ lineItems })
+    })
+
+    console.log(`res is: ${res}`);
+
+    const data = await res.json();
+
+    console.log(`data is: ${data}`);
+
+    product = data;
+  }
 
   // log the variables
   // console.log('props are:')
   // console.log(props);
-  // console.log('searchParams are:')
-  // console.log(searchParams);
-  // console.log('price_id is:')
-  // console.log(price_id);
+  console.log('searchParams are:')
+  console.log(searchParams);
+  console.log('price_id is:')
+  console.log(price_id);
   // console.log('product is:')
   // console.log(product);
 

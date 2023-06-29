@@ -1700,7 +1700,47 @@ Issue, we are running a client side object store to store things that are fetche
 
 ## **Solution to Technical Debt!** - Handle the URL context instead of the re-routing to homepage
 
----
+**Refetch the product on page load on the sub-page route**
+
+I want to create an `async` function on the product page (sub-page), where I can fetch the product based on the URL context. We call this function `loadProduct`, including the log statements to debug each step. We pass in `price_id` as part of the `lineItems`.
+
+`/app/product/page.js`
+
+```js
+  async function loadProduct(){
+
+    const lineItems = {
+      price_id: price_id,
+    }
+    console.log(`lineItems is: ${lineItems}`);
+
+    const res = await fetch('/api/price', {
+      method: 'GET',
+      body: JSON.stringify({ lineItems })
+    })
+
+    console.log(`res is: ${res}`);
+
+    const data = await res.json();
+
+    console.log(`data is: ${data}`);
+
+    product = data;
+  }
+```
+
+Here is the template for the `price` route that will load the product on page-load
+
+`/app/api/price/route.js`
+
+```js
+import { NextResponse } from "next/server";
+import Stripe from "stripe";
+
+export async function GET(request) {
+
+}
+```
 
 # Creating the Product Page
 
