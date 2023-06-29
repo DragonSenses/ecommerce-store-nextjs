@@ -2724,3 +2724,11 @@ export default function CancelPage() {
   )
 }
 ```
+
+# Finalizing the App
+
+Now to check for functionality, add an item to the cart and click checkout.
+
+After the session is received, enter payment details. When filled out correctly, one should see the success page from the Success route.
+
+We now have a functioning ecommerce store made in Nextjs13.
