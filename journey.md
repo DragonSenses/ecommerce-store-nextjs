@@ -1702,6 +1702,8 @@ Issue, we are running a client side object store to store things that are fetche
 
 **Refetch the product on page load on the sub-page route**
 
+### The fetch function to `loadProduct`
+
 I want to create an `async` function on the product page (sub-page), where I can fetch the product based on the URL context. We call this function `loadProduct`, including the log statements to debug each step. We pass in `price_id` as part of the `lineItems`.
 
 `/app/product/page.js`
@@ -1728,6 +1730,8 @@ I want to create an `async` function on the product page (sub-page), where I can
     product = data;
   }
 ```
+
+### The price route handler
 
 Here is the template for the `price` route that will load the product on page-load
 
@@ -1765,6 +1769,32 @@ export async function GET(request) {
     });
   }
 }
+```
+
+Then let's fill out the `try..` part of the function. 
+- Initialize `Stripe`
+- Destructure the `price_id` from the `request.body.lineItems`
+- [Retrieve the price](https://stripe.com/docs/api/prices/retrieve)
+- Send a successful response
+
+```js
+  try{
+    // Initialize Stripe
+    const stripe = new Stripe(process.env.STRIPE_SECRET ?? '', {
+      apiVersion: '2020-08-27'
+    });
+
+    // Destructure out price_id from the request body
+    const { price_id } = body.lineItems;
+
+    // Access our product data, by retrieving the price given the id
+    const res = await stripe.prices.retrieve(
+      price_id
+    );
+
+    return NextResponse.json({ res });
+
+  } catch(err) {
 ```
 
 # Creating the Product Page
