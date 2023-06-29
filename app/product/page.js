@@ -1,12 +1,5 @@
 "use client"
-import { useRouter } from "next/navigation";
 import useCart from "../(store)/store";
-import { getStripeProducts } from '@/lib/getStripeProducts';
-
-export const getServerSideProps = async () => {
-  const products = await getStripeProducts();
-  return { products: {props}};
-}
 
 export default function ProductPage(props) {
   const { searchParams } = props;
@@ -14,6 +7,7 @@ export default function ProductPage(props) {
 
   let product = useCart(state => state.product);
   const addItemToCart = useCart(state => state.addItemToCart);
+
 
   // log the variables
   // console.log('props are:')
@@ -24,15 +18,6 @@ export default function ProductPage(props) {
   // console.log(price_id);
   // console.log('product is:')
   // console.log(product);
-
-  const router = useRouter();
-  // console.log('router.query is:');
-  // console.log(router.query);
-
-  // console.log('router.useSearchParams() is:');
-  // console.log(router.useSearchParams());
-
-  // console.log(p);
 
   if(!product?.name){
     console.log("does searchParams exist?");
