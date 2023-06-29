@@ -2693,4 +2693,34 @@ We convert to this:
 
 ## Create Success Route
 
-Make `/app/success/page.js`.
+Make `/app/success/page.js`, it will contain:
+
+```js
+import Link from "next/link";
+
+export default function SuccessPage() {
+  return(
+    <div className="">
+      Success!
+      <Link href={'/'}>Back home!</Link>
+    </div>
+  )
+}
+```
+
+## Create Cancel Route
+
+Make `/app/cancel/page.js`:
+
+```js
+import Link from "next/link";
+
+export default function CancelPage() {
+  return(
+    <div className="">
+      Cancelled
+      <Link href={'/'}>Back home!</Link>
+    </div>
+  )
+}
+```
