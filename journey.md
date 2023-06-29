@@ -2690,3 +2690,7 @@ We convert to this:
 ```js
   return NextResponse.json({ session });
 ```
+
+## Create Success Route
+
+Make `/app/success/page.js`.
