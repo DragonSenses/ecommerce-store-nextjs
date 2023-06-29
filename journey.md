@@ -2655,3 +2655,38 @@ This will give us the proper body of the document.
 
 #### New Issue: `res.sendStatus` is not a function
 
+In addition to the native `Request` and `Response`, Nexjs extends with `NextRequest` and `NextResponse` providing convenient helpers. [The docs](https://nextjs.org/docs/app/building-your-application/routing/router-handlers#extended-nextrequest-and-nextresponse-apis).
+
+Let's just use NextJS's style of response: 
+
+```js
+import { NextResponse } from "next/server";
+```
+
+Then in `route.js`, we can replace instances of `sendStatus` like this:
+
+```js
+  if(body.lineItems.length === 0){
+    return new res.sendStatus(405);
+  }
+```
+
+Into:
+
+```js
+  if(body.lineItems.length === 0){
+    return new NextResponse('Error', {
+      status: 405,
+    });
+  }
+```
+
+Now for the session response like this:
+```js
+return res.status(201).json({ session });
+```
+
+We convert to this:
+```js
+  return NextResponse.json({ session });
+```
