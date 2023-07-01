@@ -9,8 +9,6 @@ export default function Header() {
   const openModal = useCart(state => state.openModal);
   const setOpenModal = useCart(state => state.setOpenModal);
 
-  console.log(cartItems);
-
   return (
     <header className='flex items-center justify-between sticky
     top-0 p-6 bg-slate-200 border-b border-solid border-blue-900
