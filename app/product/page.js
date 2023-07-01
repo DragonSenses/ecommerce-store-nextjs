@@ -8,12 +8,10 @@ export default async function ProductPage(props) {
   let product = useCart(state => state.product);
   const addItemToCart = useCart(state => state.addItemToCart);
 
-  async function loadProduct(){
-
+  async function loadProduct(id){
     const lineItems = {
-      price_id: price_id,
+      price_id: id,
     }
-    console.log(`lineItems is: ${lineItems}`);
 
     const response = await fetch('/api/price', {
       method: 'POST',
@@ -23,42 +21,22 @@ export default async function ProductPage(props) {
       body: JSON.stringify({ lineItems })
     })
 
-    console.log("================ Response ======================");
-    console.log(response);
-    console.log("================ End of Response ======================");
-
     const data = await response.json();
 
-    console.log("================ data ======================");
-    console.log(data);
-    console.log("================ End of data ======================");
-
-    console.log(data.res.data);
-    let dataArr = data.res.data;
-    let x = dataArr.filter(item => item.id === price_id);
-    console.log(x);
-    // x is the product
-
-    let y = x[0].product;
-    console.log(y);
-    product = data;
-
-    console.log("================ product ======================");
-    console.log(product);
-    console.log("================ End of product ======================");
+    return data;
   }
 
-  loadProduct();
+  loadProduct(price_id);
 
   // log the variables
   // console.log('props are:')
   // console.log(props);
-  console.log('searchParams are:')
-  console.log(searchParams);
-  console.log('price_id is:')
-  console.log(price_id);
-  console.log('product is:')
-  console.log(product);
+  // console.log('searchParams are:')
+  // console.log(searchParams);
+  // console.log('price_id is:')
+  // console.log(price_id);
+  // console.log('product is:')
+  // console.log(product);
 
   if(!product?.name){
     console.log("does searchParams exist?");
