@@ -461,6 +461,8 @@ async function getStripeProducts(){
 [Stripe API: List all Prices in Node.js](https://stripe.com/docs/api/prices/list?lang=node). As you can see we `await stripe.prices.list({});` to `GET` our data.
 - Inside of the `list()` method, we pass in an object that has 1 key `expand` with the value as an `array` that contains the string `'data.product'`.
 
+The `expand` parameter in Stripe API is used to expand nested objects. When you use the `expand` parameter with `stripe.prices.list()`, it will expand the product object associated with each price object. This means that you can access the product object’s properties without having to make a separate API call.
+
 ```js
 async function getStripeProducts(){
   // Initialize Stripe
@@ -1796,6 +1798,63 @@ Then let's fill out the `try..` part of the function.
 
   } catch(err) {
 ```
+
+Change this to `prices.list` with product parameter
+
+```json
+```
+---
+
+Here is the `loadProduct` function so far with the log statements:
+
+```js
+  async function loadProduct(){
+
+    const lineItems = {
+      price_id: price_id,
+    }
+    console.log(`lineItems is: ${lineItems}`);
+
+    const response = await fetch('/api/price', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({ lineItems })
+    })
+
+    console.log("================ Response ======================");
+    console.log(response);
+    console.log("================ End of Response ======================");
+
+    const data = await response.json();
+
+    console.log("================ data ======================");
+    console.log(data);
+    console.log("================ End of data ======================");
+
+    console.log(data.res.data);
+    let dataArr = data.res.data;
+    let x = dataArr.filter(item => item.id === price_id);
+    console.log(x); // x is the product
+
+    let y = x[0].product;
+    console.log(y);
+    product = data;
+
+    console.log("================ product ======================");
+    console.log(product);
+    console.log("================ End of product ======================");
+  }
+
+  loadProduct();
+  ```
+
+  As you can see we can the price list through the `data.res.data` variable. This yields an array of JavaScript objects that contain our `product`, `unit_amount`, images and more. 
+
+  We only need to one of these objects so we filter through them by `id`.
+
+  Then we are left with the exact product
 
 # Creating the Product Page
 
