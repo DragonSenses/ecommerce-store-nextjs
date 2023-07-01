@@ -10,30 +10,29 @@ export async function POST(request) {
     });
   }
 
+  // Destructure out price_id from the request body
+  const { price_id } = body.lineItems;
+
   try{
     // Initialize Stripe
     const stripe = new Stripe(process.env.STRIPE_SECRET ?? '', {
       apiVersion: '2020-08-27'
     });
 
-    // Destructure out price_id from the request body
-    const { price_id } = body.lineItems;
-
-    // Access our product data, by retrieving the price given the id
-    // const res = await stripe.prices.retrieve(
-    //   price_id
-    // );
-    // const product = await stripe.prices.retrieve(
-    //   price_id
-    // );
-    // const res = await stripe.prices.list({
-    //   product
-    // });
+    // Fetch a list of prices
     const res = await stripe.prices.list({
       expand: ['data.product']
     });
 
-    return NextResponse.json({ res });
+    console.log(res);
+
+    // Access price list data within the response (an array)
+    const dataArr = res.data;
+
+    // Filter through by price_id
+    const price = dataArr.filter(item => item.id === price_id);
+
+    return NextResponse.json({ price });
 
   } catch(err) {
     console.log("-------- error on product page load --------");
