@@ -1927,6 +1927,48 @@ But on the server-side, in the price route, we can just access it without a seco
     const dataArr = res.data;
 ```
 
+Now it works! We can now clean-up `loadProduct`
+
+```js
+  async function loadProduct(id){
+    const lineItems = {
+      price_id: id,
+    }
+
+    const response = await fetch('/api/price', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({ lineItems })
+    })
+
+    const data = await response.json();
+
+    return data;
+  }
+```
+
+Remove log statements:
+```js
+  // log the variables
+  // console.log('props are:')
+  // console.log(props);
+  // console.log('searchParams are:')
+  // console.log(searchParams);
+  // console.log('price_id is:')
+  // console.log(price_id);
+  // console.log('product is:')
+  // console.log(product);
+
+  if(!product?.name){
+    // console.log("does searchParams exist?");
+    // console.log(searchParams);
+    window.location.href = '/';
+    // const products = await getStripeProducts();
+    // product = products.find(product => product.id == price_id);
+  }
+```
 
 # Creating the Product Page
 
@@ -1941,6 +1983,52 @@ Assuming all things work and we are able to get the `product`, let's destructure
     productInfo,
   } = product;
 ```
+
+We can now either load product from state or fetch product on page-load:
+
+```js
+  // Load product from state
+  let product = useCart(state => state.product);
+
+  product = await loadProduct(price_id);
+```
+
+Depending on which we use, we destructure the data we need to dynamically render the page.
+
+For loading product from state:
+```js
+  /* Load product from state */
+  let product = useCart(state => state.product);
+
+  /*  Destructure the information we need from the product loaded from state
+      Used to dynamically render the product page
+  */
+  const {
+    name,
+    description,
+    cost,
+    productInfo,
+  } = product;
+```
+
+For the fetch:
+```js
+  const price = await loadProduct(price_id);
+  
+  const product = price.price[0];
+
+  const {
+    unit_amount: cost,
+    product: productInfo,
+  } = product;
+
+  const {
+    name,
+    description
+  } = productInfo;
+```
+
+Now the product is successfully loaded in, regardless of whether the product is in the state, the user shared the product page URL or the page was refreshed. Technical Debt is resolved.
 
 ## Styling the Product Page
 

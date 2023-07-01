@@ -4,9 +4,35 @@ import useCart from "../(store)/store";
 export default async function ProductPage(props) {
   const { searchParams } = props;
   const { price_id } = searchParams;
-
-  let product = useCart(state => state.product);
   const addItemToCart = useCart(state => state.addItemToCart);
+
+  /* Load product from state */
+  // let product = useCart(state => state.product);
+
+  /*  Destructure the information we need from the product loaded from state
+      Used to dynamically render the product page
+  */
+  // const {
+  //   name,
+  //   description,
+  //   cost,
+  //   productInfo,
+  // } = product;
+  
+  /* Fetch product on page load */
+  const price = await loadProduct(price_id);
+  
+  const product = price.price[0];
+
+  const {
+    unit_amount: cost,
+    product: productInfo,
+  } = product;
+
+  const {
+    name,
+    description
+  } = productInfo;
 
   async function loadProduct(id){
     const lineItems = {
@@ -19,41 +45,17 @@ export default async function ProductPage(props) {
         'Content-Type': 'application/json'
       },
       body: JSON.stringify({ lineItems })
-    })
+    });
 
     const data = await response.json();
 
     return data;
   }
 
-  loadProduct(price_id);
-
-  // log the variables
-  // console.log('props are:')
-  // console.log(props);
-  // console.log('searchParams are:')
-  // console.log(searchParams);
-  // console.log('price_id is:')
-  // console.log(price_id);
-  // console.log('product is:')
-  // console.log(product);
-
-  if(!product?.name){
-    console.log("does searchParams exist?");
-    console.log(searchParams);
-    window.location.href = '/';
-    // const products = await getStripeProducts();
-    // product = products.find(product => product.id == price_id);
-  }
-  
-  // Destructure the information we need from the product
-  // Used to dynamically render the product page
-  const {
-    name,
-    description,
-    cost,
-    productInfo,
-  } = product;
+  // If product does not exist, bring user to home-page
+  // if(!product?.name){
+  //   window.location.href = '/';
+  // }
   
   function handleAddToCart() {
     const newItem = {
