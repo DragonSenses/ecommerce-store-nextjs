@@ -1,7 +1,7 @@
 import { NextResponse } from "next/server";
 import Stripe from "stripe";
 
-export async function GET(request) {
+export async function POST(request) {
   const body = await request.json();
 
   if(body.lineItems.length === 0){
@@ -20,9 +20,18 @@ export async function GET(request) {
     const { price_id } = body.lineItems;
 
     // Access our product data, by retrieving the price given the id
-    const res = await stripe.prices.retrieve(
-      price_id
-    );
+    // const res = await stripe.prices.retrieve(
+    //   price_id
+    // );
+    // const product = await stripe.prices.retrieve(
+    //   price_id
+    // );
+    // const res = await stripe.prices.list({
+    //   product
+    // });
+    const res = await stripe.prices.list({
+      expand: ['data.product']
+    });
 
     return NextResponse.json({ res });
 
