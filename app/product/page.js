@@ -1,7 +1,7 @@
 "use client"
 import useCart from "../(store)/store";
 
-export default function ProductPage(props) {
+export default async function ProductPage(props) {
   const { searchParams } = props;
   const { price_id } = searchParams;
 
@@ -15,19 +15,40 @@ export default function ProductPage(props) {
     }
     console.log(`lineItems is: ${lineItems}`);
 
-    const res = await fetch('/api/price', {
-      method: 'GET',
+    const response = await fetch('/api/price', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
       body: JSON.stringify({ lineItems })
     })
 
-    console.log(`res is: ${res}`);
+    console.log("================ Response ======================");
+    console.log(response);
+    console.log("================ End of Response ======================");
 
-    const data = await res.json();
+    const data = await response.json();
 
-    console.log(`data is: ${data}`);
+    console.log("================ data ======================");
+    console.log(data);
+    console.log("================ End of data ======================");
 
+    console.log(data.res.data);
+    let dataArr = data.res.data;
+    let x = dataArr.filter(item => item.id === price_id);
+    console.log(x);
+    // x is the product
+
+    let y = x[0].product;
+    console.log(y);
     product = data;
+
+    console.log("================ product ======================");
+    console.log(product);
+    console.log("================ End of product ======================");
   }
+
+  loadProduct();
 
   // log the variables
   // console.log('props are:')
@@ -36,8 +57,8 @@ export default function ProductPage(props) {
   console.log(searchParams);
   console.log('price_id is:')
   console.log(price_id);
-  // console.log('product is:')
-  // console.log(product);
+  console.log('product is:')
+  console.log(product);
 
   if(!product?.name){
     console.log("does searchParams exist?");
