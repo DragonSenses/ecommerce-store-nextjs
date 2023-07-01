@@ -1801,9 +1801,21 @@ Then let's fill out the `try..` part of the function.
 
 Change this to `prices.list` with product parameter
 
-```json
+```js
+  try{
+    // Initialize Stripe
+    const stripe = new Stripe(process.env.STRIPE_SECRET ?? '', {
+      apiVersion: '2020-08-27'
+    });
+
+    const res = await stripe.prices.list({
+      expand: ['data.product']
+    });
+
+    return NextResponse.json({ res });
+
+  } catch(err) {
 ```
----
 
 Here is the `loadProduct` function so far with the log statements:
 
@@ -1848,13 +1860,73 @@ Here is the `loadProduct` function so far with the log statements:
   }
 
   loadProduct();
-  ```
+```
 
   As you can see we can the price list through the `data.res.data` variable. This yields an array of JavaScript objects that contain our `product`, `unit_amount`, images and more. 
 
   We only need to one of these objects so we filter through them by `id`.
 
-  Then we are left with the exact product
+  Then we are left with the exact product.
+
+  Let's move this filtering to the server-side to reduce load on the client.
+
+  Let's work through it, so in `/price/route.js`
+
+```js
+    try{
+    // Initialize Stripe
+    const stripe = new Stripe(process.env.STRIPE_SECRET ?? '', {
+      apiVersion: '2020-08-27'
+    });
+
+    // Fetch a list of prices
+    const res = await stripe.prices.list({
+      expand: ['data.product']
+    });
+
+    
+
+    const price = 1;
+
+    return NextResponse.json({ price });
+
+  } catch(err) {
+```
+
+Here the `res` response is this json
+
+```js
+{res: {…}}
+  res : 
+    data : (3) [{…}, {…}, {…}]
+    has_more : false
+    object : "list"
+    url: "/v1/prices"
+    [[Prototype]] : Object
+  [[Prototype]] : Object
+```
+
+So we need to access the second layer: `res.res` and also access that `data` array. This is true only if it was on the client-side because it returns a response object that wraps the response.
+
+So in client-side it is `res.res.data` as we can see here when in product page:
+```js
+    const data = await response.json();
+
+    let dataArr = data.res.data;
+```
+
+But on the server-side, in the price route, we can just access it without a second layer:
+
+```js
+    // Fetch a list of prices
+    const res = await stripe.prices.list({
+      expand: ['data.product']
+    });
+
+    // Access price list data within the response (an array)
+    const dataArr = res.data;
+```
+
 
 # Creating the Product Page
 
