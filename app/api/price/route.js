@@ -24,8 +24,6 @@ export async function POST(request) {
       expand: ['data.product']
     });
 
-    console.log(res);
-
     // Access price list data within the response (an array)
     const dataArr = res.data;
 
