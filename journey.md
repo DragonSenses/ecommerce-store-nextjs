@@ -43,8 +43,6 @@ npx create-next-app
 A full-stack e-commerce application using:
 
 - **Next.js** and **React** as the front-end of our application
-- **Firebase** Authentication
-- **Firestore** noSQL databases
 - **Stripe** API for product and transaction handling
 - **TailwindCSS** to design and stylize our app
 - **Zustand** for global state management
