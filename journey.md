@@ -3122,3 +3122,35 @@ npm install package-name@"<3.0.0"
 ```
 
 Would install the latest right before 3.0.0 (e.g. 2.11.1)
+
+## Dependency log
+
+(May 21, 2024)
+```sh
+npm outdated
+
+autoprefixer        10.4.14  10.4.19  10.4.19  node_modules/autoprefixer        ecommerce-store-nextjs
+eslint               8.42.0   8.42.0    9.3.0  node_modules/eslint              ecommerce-store-nextjs
+eslint-config-next   13.4.4   13.4.4   14.2.3  node_modules/eslint-config-next  ecommerce-store-nextjs
+next                 13.4.7   13.5.6   14.2.3  node_modules/next                ecommerce-store-nextjs
+postcss              8.4.24   8.4.38   8.4.38  node_modules/postcss             ecommerce-store-nextjs
+react                18.2.0   18.2.0   18.3.1  node_modules/react               ecommerce-store-nextjs
+react-dom            18.2.0   18.2.0   18.3.1  node_modules/react-dom           ecommerce-store-nextjs
+stripe               12.9.0  12.18.0   15.7.0  node_modules/stripe              ecommerce-store-nextjs
+tailwindcss           3.3.2    3.4.3    3.4.3  node_modules/tailwindcss         ecommerce-store-nextjs
+zustand               4.3.8    4.5.2    4.5.2  node_modules/zustand             ecommerce-store-nextjs
+```
+
+chore: Update dependencies to latest semver range
+
+```sh
+npm update --save
+
+Package             Current   Wanted  Latest  Location                         Depended by
+eslint               8.42.0   8.42.0   9.3.0  node_modules/eslint              ecommerce-store-nextjs
+eslint-config-next   13.4.4   13.4.4  14.2.3  node_modules/eslint-config-next  ecommerce-store-nextjs
+next                 13.5.6   13.5.6  14.2.3  node_modules/next                ecommerce-store-nextjs
+react                18.2.0   18.2.0  18.3.1  node_modules/react               ecommerce-store-nextjs
+react-dom            18.2.0   18.2.0  18.3.1  node_modules/react-dom           ecommerce-store-nextjs
+stripe              12.18.0  12.18.0  15.7.0  node_modules/stripe              ecommerce-store-nextjs
+```
